@@ -1,0 +1,57 @@
+// Colors
+$color-orange: #f0541e;
+$color-dark: #141414;
+$color-light: #fbf9f7;
+$color-grey: #edeceb;
+
+// lengths
+$page-max-width: 600px;
+$headerHeight: 30px;
+
+// Gaps
+$gap-small: 1rem;
+$gap-medium: 2.5rem;
+$gap-large: 5rem;
+$gap-xl: 10rem;
+
+// Breakpoints
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+
+// Paddings
+$padding-mobile: 1rem;
+$padding-tablet: 5rem;
+$moduleTopBottomPadding: 0.5rem;
+
+// Border radius
+$border-radius: 0.4rem;
+
+// MIXINS
+@mixin p-styles {
+    font-size: 1.5rem;
+}
+
+@mixin h1-styles {
+    font-size: 2.5rem;
+}
+
+@mixin h2-styles {
+    font-size: 2rem;
+}
+
+@mixin h3-styles {
+    font-size: 1.8rem;
+}
+
+@mixin h4-styles {
+    font-size: 1.6rem;
+}
+
+@mixin btnStyles {
+    background-color: transparent;
+    border: 1px solid $color-dark;
+    border-radius: $border-radius;
+    padding: 1rem 1.5rem;
+    font-size: 1.3rem;
+    text-align: center;
+}

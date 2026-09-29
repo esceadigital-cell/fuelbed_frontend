@@ -1,0 +1,110 @@
+@use "../../../../styles/variables" as *;
+
+.bgLayer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color-dark, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //filter: blur(5px);
+    backdrop-filter: blur(3px);
+}
+
+.wrapper {
+    //border: 2px solid $color-dark;
+    padding: 2rem;
+    background-color: $color-light;
+    margin: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: scroll;
+    position: relative;
+    border-radius: $border-radius;
+    display: flex;
+    flex-direction: column;
+    gap: $gap-medium;
+    width: 100%;
+    max-width: calc($page-max-width - (($padding-tablet * 4)));
+
+    .headingAnCloseBtn {
+        display: flex;
+        gap: $gap-medium;
+        align-items: end;
+        justify-content: space-between;
+
+        .closeBtn {
+            font-size: 3rem;
+            display: flex;
+            align-items: end;
+        }
+
+        .heading {
+            @include h1-styles;
+        }
+    }
+
+    .versionWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: $gap-small;
+    }
+
+    .versionSelect {
+        padding: 0.5rem;
+        @include h3-styles;
+        width: 100%;
+        border: none;
+        border-radius: $border-radius;
+        background-color: $color-grey;
+        color: $color-dark;
+        border: 1px solid $color-dark;
+    }
+
+    .singleVersion {
+        @include h3-styles;
+    }
+
+    .fuelbedsSection {
+        display: flex;
+        flex-direction: column;
+        gap: $gap-small;
+
+        .fuelbedsWrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: $gap-small;
+
+            .fuelbedBtn {
+                border: 1px solid $color-dark;
+                border-radius: $border-radius;
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: $gap-small;
+                //text-align: center;
+                height: 100%;
+                justify-content: space-between;
+
+                .imgWrapper {
+                    width: 100%;
+                    aspect-ratio: 1/1;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    border: 2px solid $color-orange;
+                }
+            }
+
+            .seeGuideBtn {
+                //@include btnStyles;
+                @include p-styles;
+                align-self: end;
+                //background-color: $color-light;
+                //border: none;
+                //text-align: center;
+            }
+        }
+    }
+}

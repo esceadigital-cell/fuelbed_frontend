@@ -1,0 +1,63 @@
+@use "../../../../styles/variables" as *;
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-medium;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 0.5rem;
+    @include h3-styles;
+    border: 1px solid $color-grey;
+    border-radius: $border-radius;
+}
+
+.fuelTypeFilterButtonsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-small;
+
+    .fuelTypeBtns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        flex-wrap: wrap;
+        gap: $gap-small;
+
+        .fuelTypeBtn {
+            @include btnStyles;
+            border: 1px solid $color-orange;
+            color: $color-orange;
+            border-radius: 3rem;
+
+            &.selectedType {
+                background-color: $color-orange;
+                color: $color-light;
+                //border: 1px solid $color-dark;
+            }
+        }
+    }
+}
+
+.modelsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-medium;
+    border-top: 1px solid $color-dark;
+    padding-top: $gap-medium;
+}
+
+.modelBtnsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-small;
+
+    .modelBtn {
+        @include btnStyles;
+        width: 100%;
+        border: 1px solid $color-dark;
+        //background-color: $color-dark;
+        //color: $color-light;
+    }
+}

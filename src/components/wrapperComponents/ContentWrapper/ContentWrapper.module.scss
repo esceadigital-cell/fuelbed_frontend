@@ -1,0 +1,15 @@
+@use "../../../styles//variables" as *;
+
+.wrapper {
+    max-width: $page-max-width;
+    margin: 0 auto;
+    padding-left: $padding-mobile;
+    padding-right: $padding-mobile;
+    padding-top: $moduleTopBottomPadding;
+    padding-bottom: $moduleTopBottomPadding;
+
+    @media screen and (min-width: $breakpoint-mobile) {
+        padding-left: $padding-tablet;
+        padding-right: $padding-tablet;
+    }
+}

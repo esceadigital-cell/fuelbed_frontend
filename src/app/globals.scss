@@ -1,0 +1,47 @@
+@use "../styles/variables" as *;
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+html,
+body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+body {
+    min-height: 100%;
+    background-color: $color-light;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+p {
+    @include p-styles;
+}
+
+h1 {
+    @include h1-styles;
+}
+
+h2 {
+    @include h2-styles;
+}
+
+h3 {
+    @include h3-styles;
+}
+
+h4 {
+    @include h4-styles;
+}

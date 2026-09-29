@@ -1,0 +1,74 @@
+@use "../../../../../styles/variables" as *;
+
+.container {
+    position: relative;
+
+    .mediaPagination {
+        position: absolute;
+        top: 0.7rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 0.7rem;
+        z-index: 10;
+
+        .dot {
+            width: 0.7rem;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            background-color: $color-grey;
+
+            &.activeDot {
+                background-color: $color-orange;
+            }
+        }
+    }
+
+    .wrapper {
+        overflow-x: auto;
+        display: flex;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+
+        .mediaItem {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+        }
+    }
+
+    .navBtn {
+        position: absolute;
+        top: 50%;
+        //transform: translateY(-50%);
+        height: 6rem;
+        padding: 0;
+        border: none;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.2s;
+
+        .btnBgColor {
+            background-color: rgba($color-dark, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+
+        &:disabled {
+            opacity: 0;
+        }
+
+        &.prev {
+            left: 0;
+            transform: translate(0.2rem, -50%) rotate(180deg);
+        }
+
+        &.next {
+            right: 0;
+            transform: translate(-0.2rem, -50%);
+        }
+    }
+}
