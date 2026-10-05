@@ -6,12 +6,12 @@ import ContentWrapper from "@/components/wrapperComponents/ContentWrapper/Conten
 import Guide from "@/components/mainComponents/guide/Guide";
 
 interface GuidePageProps extends DynamicPageProps {
-    searchParams: Promise<{ modelTitle?: string; versionTitle?: string }>;
+    searchParams: Promise<{ modelTitle?: string; versionTitle?: string; fuelbed?: string }>;
 }
 
 export default async function GuidePage(props: GuidePageProps) {
     const { slug } = await props.params;
-    const { modelTitle, versionTitle } = await props.searchParams;
+    const { modelTitle, versionTitle, fuelbed } = await props.searchParams;
 
     const guideId = slug;
 
@@ -26,7 +26,12 @@ export default async function GuidePage(props: GuidePageProps) {
     return (
         <BlockWrapper>
             <ContentWrapper>
-                <Guide guide={guide} modelTitle={modelTitle} versionTitle={versionTitle} />
+                <Guide
+                    guide={guide}
+                    modelTitle={modelTitle}
+                    versionTitle={versionTitle}
+                    fuelbed={fuelbed}
+                />
             </ContentWrapper>
         </BlockWrapper>
     );

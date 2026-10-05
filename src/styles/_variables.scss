@@ -3,6 +3,7 @@ $color-orange: #f0541e;
 $color-dark: #141414;
 $color-light: #fbf9f7;
 $color-grey: #edeceb;
+$color-green: rgb(113, 247, 113);
 
 // lengths
 $page-max-width: 600px;
@@ -19,7 +20,7 @@ $breakpoint-mobile: 480px;
 $breakpoint-tablet: 768px;
 
 // Paddings
-$padding-mobile: 1rem;
+$padding-mobile: 0.5rem;
 $padding-tablet: 5rem;
 $moduleTopBottomPadding: 0.5rem;
 
@@ -29,29 +30,36 @@ $border-radius: 0.4rem;
 // MIXINS
 @mixin p-styles {
     font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+    line-height: 2rem;
 }
 
 @mixin h1-styles {
     font-size: 2.5rem;
+    letter-spacing: 1rem;
 }
 
 @mixin h2-styles {
     font-size: 2rem;
+    letter-spacing: 0.1rem;
 }
 
 @mixin h3-styles {
     font-size: 1.8rem;
+    letter-spacing: 0.1rem;
 }
 
 @mixin h4-styles {
     font-size: 1.6rem;
+    letter-spacing: 0.1rem;
 }
 
 @mixin btnStyles {
     background-color: transparent;
     border: 1px solid $color-dark;
     border-radius: $border-radius;
-    padding: 1rem 1.5rem;
+    padding: 0.5rem 1.5rem;
     font-size: 1.3rem;
     text-align: center;
+    letter-spacing: 0.1rem;
 }

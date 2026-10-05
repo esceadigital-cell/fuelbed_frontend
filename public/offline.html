@@ -1,0 +1,97 @@
+<!-- public/offline.html -->
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Downloaded Guides</title>
+        <style>
+            @font-face {
+                font-family: "Die Grotesk";
+                src: url("/fonts/die-grotesk-b-regular.woff2") format("woff2");
+                font-weight: 400;
+                font-style: normal;
+            }
+            h1 {
+                font-size: 25px;
+                font-weight: normal;
+            }
+            h2 {
+                font-size: 20px;
+                font-weight: normal;
+            }
+            body {
+                font-family: "Die Grotesk", sans-serif;
+                padding: 10px;
+                background-color: #fbf9f7;
+                color: #141414;
+            }
+            ul {
+                padding-left: 20px;
+            }
+            li {
+                margin-bottom: 1rem;
+            }
+            a {
+                text-decoration: none;
+                font-size: 15px;
+            }
+            .header {
+                display: flex;
+                justify-content: center;
+            }
+            .logo {
+                max-width: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <img class="logo" src="/icons/escea_logo_orange.svg" alt="Escea Fireplaces" />
+        </div>
+        <h1>You are offline</h1>
+        <h2>Downloaded Guides:</h2>
+        <ul id="list"></ul>
+        <p id="empty" style="display: none">No guides downloaded yet.</p>
+
+        <script>
+            async function renderGuides() {
+                const stored = JSON.parse(localStorage.getItem("downloadedGuides") || "[]");
+
+                // only keep guides that are still in the cache
+                const stillCached = await Promise.all(
+                    stored.map((g) => caches.has(`guide-${g.id}`)),
+                );
+                const guides = stored.filter((_, i) => stillCached[i]);
+
+                // clean up localStorage if some were removed
+                if (guides.length !== stored.length) {
+                    localStorage.setItem("downloadedGuides", JSON.stringify(guides));
+                }
+
+                const list = document.getElementById("list");
+
+                if (guides.length === 0) {
+                    document.getElementById("empty").style.display = "block";
+                    return;
+                }
+
+                guides.forEach((g) => {
+                    const li = document.createElement("li");
+                    const a = document.createElement("a");
+                    const params = new URLSearchParams({
+                        modelTitle: g.modelTitle,
+                        versionTitle: g.versionTitle,
+                        fuelbed: g.fuelbedTitle,
+                    });
+                    a.href = `/guide/${g.id}?${params.toString()}`;
+                    a.textContent = `${g.modelTitle} - ${g.versionTitle} - ${g.fuelbedTitle}`;
+                    li.appendChild(a);
+                    list.appendChild(li);
+                });
+            }
+
+            renderGuides();
+        </script>
+    </body>
+</html>

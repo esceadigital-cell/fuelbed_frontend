@@ -19,11 +19,20 @@ body {
 body {
     min-height: 100%;
     background-color: $color-light;
+    font-family: var(--font-main), sans-serif;
+    min-height: 100vh;
 }
 
 a {
     color: inherit;
     text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
 }
 
 p {
@@ -32,16 +41,20 @@ p {
 
 h1 {
     @include h1-styles;
+    font-weight: 400;
 }
 
 h2 {
     @include h2-styles;
+    font-weight: 400;
 }
 
 h3 {
     @include h3-styles;
+    font-weight: 400;
 }
 
 h4 {
     @include h4-styles;
+    font-weight: 400;
 }

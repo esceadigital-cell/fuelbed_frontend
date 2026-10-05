@@ -6,6 +6,7 @@ interface IconComponentProps {
     width: number;
     height: number;
     alt: string;
+    unoptimized?: boolean;
 }
 
 export default function IconComponent(props: IconComponentProps) {
@@ -16,6 +17,7 @@ export default function IconComponent(props: IconComponentProps) {
             width={props.width}
             height={props.height}
             alt={props.alt ?? ""}
+            unoptimized={props.unoptimized}
         />
     );
 }

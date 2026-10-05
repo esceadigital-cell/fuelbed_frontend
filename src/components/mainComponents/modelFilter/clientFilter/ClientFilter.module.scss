@@ -8,16 +8,72 @@
 
 .searchInput {
     width: 100%;
-    padding: 0.5rem;
-    @include h3-styles;
+    padding: 0.2rem 0.5rem;
+    @include h4-styles;
     border: 1px solid $color-grey;
     border-radius: $border-radius;
+}
+
+.downloadedGuidesWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-small;
+    position: relative;
+
+    .downloadedGuidesDropDownTopBar {
+        display: flex;
+        justify-content: space-between;
+        gap: $gap-small;
+        align-items: center;
+        @include btnStyles;
+        padding: 0.2rem 0.5rem;
+
+        .downloadedGuidesHeading {
+            font-size: 1.3rem;
+        }
+
+        .arrowIconWrapper {
+            display: flex;
+            transform: rotate(180deg);
+
+            &.isOpen {
+                transform: rotate(0);
+            }
+        }
+    }
+
+    .downloadedGuidesList {
+        background-color: $color-grey;
+        border: 1px solid rgba($color-dark, 0.5);
+        padding: 1rem;
+        padding-bottom: 2rem;
+        //border-radius: $border-radius;
+        list-style: none;
+        position: absolute;
+        top: 0;
+        transform: translateY(calc(100% - 16px));
+        width: 100%;
+        max-height: 40rem;
+        overflow-y: auto;
+    }
+
+    li {
+        @include p-styles;
+
+        a {
+            text-decoration: underline;
+        }
+    }
 }
 
 .fuelTypeFilterButtonsWrapper {
     display: flex;
     flex-direction: column;
     gap: $gap-small;
+
+    .fueltypeFilterHeading {
+        @include p-styles;
+    }
 
     .fuelTypeBtns {
         display: grid;
@@ -29,7 +85,7 @@
             @include btnStyles;
             border: 1px solid $color-orange;
             color: $color-orange;
-            border-radius: 3rem;
+            border-radius: $border-radius;
 
             &.selectedType {
                 background-color: $color-orange;
@@ -43,8 +99,8 @@
 .modelsContainer {
     display: flex;
     flex-direction: column;
-    gap: $gap-medium;
-    border-top: 1px solid $color-dark;
+    gap: $gap-small;
+    border-top: 1px solid rgba($color-dark, 0.3);
     padding-top: $gap-medium;
 }
 
@@ -56,6 +112,7 @@
     .modelBtn {
         @include btnStyles;
         width: 100%;
+        //padding: 0.5rem 1rem;
         border: 1px solid $color-dark;
         //background-color: $color-dark;
         //color: $color-light;

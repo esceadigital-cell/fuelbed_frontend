@@ -21,10 +21,19 @@ export interface log {
 }
 
 export interface guide {
-    id: number;
+    //id: number;
+    documentId: string;
     guideText?: string;
     title: string;
     logs: log[];
+    end_of_installation_checklist: {
+        checkpoints: checkpoint[];
+    };
+}
+
+export interface checkpoint {
+    checkpoint: string;
+    id: number;
 }
 
 export interface fuelbed {

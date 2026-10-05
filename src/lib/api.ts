@@ -89,8 +89,11 @@ export async function getGuideById(id: string) {
 
     const query = qs.stringify(
         {
-            filters: { id: { $eq: id } },
-            populate: { logs: { populate: "*" } },
+            filters: { documentId: { $eq: id } },
+            populate: {
+                logs: { populate: "*" },
+                end_of_installation_checklist: { populate: { checkpoints: { populate: "*" } } },
+            },
         },
         { encodeValuesOnly: true },
     );

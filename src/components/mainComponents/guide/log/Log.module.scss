@@ -9,8 +9,9 @@
     gap: $gap-small;
 
     .mediaWrapper {
-        border: 2px solid $color-orange;
-        border-radius: $border-radius;
+        border: 1px solid $color-dark; //
+        //border-bottom: none;
+        border-radius: $border-radius $border-radius 0 0;
         position: relative;
         z-index: 2;
     }
@@ -18,21 +19,22 @@
     .stepBtns {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        margin-top: -2px;
+        margin-top: -1px; //
         z-index: 0;
 
         button {
-            border: 2px solid $color-grey;
+            border: 1px solid $color-grey;
             //border-top: 4px solid $color-orange;
             background-color: $color-light;
-            padding: 1rem 0;
-            @include p-styles;
+            padding: 0.5rem 0;
+            font-size: 1.3rem;
             appearance: none;
             -webkit-appearance: none;
             outline: none;
             border-radius: 0 0 $border-radius $border-radius;
             position: relative;
             z-index: 1;
+            letter-spacing: 0.1rem;
 
             &.middleBtn {
                 border-left: none;
@@ -40,17 +42,22 @@
             }
 
             &.active {
-                border: 2px solid $color-orange;
+                border: 1px solid $color-dark; //
+
                 border-top: none;
                 position: relative;
                 z-index: 3;
+                background-color: $color-light;
+                //color: $color-light;
+
+                box-shadow: 0px 5px 5px rgba($color-dark, 0.2);
             }
         }
     }
 
     .logTextWrapper {
         padding: 1rem;
-        background-color: $color-grey;
+        //background-color: $color-grey;
         //border: 1px solid $color-dark;
         border-radius: $border-radius;
         display: flex;

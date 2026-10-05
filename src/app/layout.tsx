@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.scss";
 import Header from "@/components/mainComponents/header/Header";
+import ServiceWorkerRegister from "@/components/nestedComponents/serviceWorkerRegister/ServiceWorkerRegister";
+import localFont from "next/font/local";
 
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
+const myFont = localFont({
+    src: [{ path: "../fonts/die-grotesk-b-regular.woff2" }],
+    variable: "--font-main",
+    display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -20,8 +17,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
     return (
-        <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+        <html lang="en" className={myFont.variable}>
             <body>
+                <ServiceWorkerRegister />
                 <Header />
                 <main>{children}</main>
             </body>

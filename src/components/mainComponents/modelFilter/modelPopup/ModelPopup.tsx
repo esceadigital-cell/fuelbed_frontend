@@ -75,10 +75,11 @@ export default function ModelPopup(props: ModelPopupProps) {
                             {selectedVersion.fuelbeds.map((fuelbed) => (
                                 <Link
                                     href={{
-                                        pathname: `/guide/${fuelbed.guide.id}`,
+                                        pathname: `/guide/${fuelbed.guide.documentId}`,
                                         query: {
                                             modelTitle: model.title,
                                             versionTitle: selectedVersion.title,
+                                            fuelbed: fuelbed.fuelbed.title,
                                         },
                                     }}
                                     key={fuelbed.id}

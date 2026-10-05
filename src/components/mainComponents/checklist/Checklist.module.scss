@@ -1,0 +1,62 @@
+@use "../../../styles/variables" as *;
+
+.wrapper {
+    background-color: $color-light;
+    display: flex;
+    flex-direction: column;
+    gap: $gap-medium;
+
+    .backBtn {
+        @include btnStyles;
+        max-width: fit-content;
+    }
+
+    .list {
+        display: flex;
+        flex-direction: column;
+        gap: $gap-small;
+    }
+
+    ul {
+        list-style: none;
+        @include p-styles;
+        display: flex;
+        flex-direction: column;
+        gap: $gap-small;
+
+        li {
+            .checkpoint {
+                display: flex;
+                align-items: center;
+                gap: $gap-small;
+                background-color: transparent;
+                border: none;
+
+                .tickBox {
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    border-radius: $border-radius;
+                    aspect-ratio: 1/1;
+                    background-color: transparent;
+                    border: 1px solid $color-dark;
+                }
+
+                &.checked {
+                    .tickBox {
+                        background-color: $color-orange;
+                    }
+                }
+            }
+        }
+    }
+
+    .doneBtn {
+        @include btnStyles;
+        max-width: fit-content;
+        align-self: center;
+        background-color: $color-orange;
+        color: $color-light;
+        border: none;
+        //margin-top: $gap-medium;
+    }
+}

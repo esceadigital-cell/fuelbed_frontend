@@ -47,7 +47,7 @@ export default function Log(props: LogProps) {
                             className={`${currentStep === "rotation" ? styles.active : undefined}`}
                             onClick={() => setCurrentStep("rotation")}
                         >
-                            Rotation
+                            ROTATION
                         </button>
                     )}
                     {props.log.overviewPlacement && props.log.overviewPlacement.length > 0 && (
@@ -55,7 +55,7 @@ export default function Log(props: LogProps) {
                             className={`${currentStep === "overview" ? styles.active : undefined} ${styles.middleBtn}`}
                             onClick={() => setCurrentStep("overview")}
                         >
-                            Overview
+                            OVERVIEW
                         </button>
                     )}
                     {props.log.closeupPlacement && props.log.closeupPlacement.length > 0 && (
@@ -63,7 +63,7 @@ export default function Log(props: LogProps) {
                             className={`${currentStep === "closeup" ? styles.active : undefined}`}
                             onClick={() => setCurrentStep("closeup")}
                         >
-                            Closeup
+                            CLOSEUP
                         </button>
                     )}
                 </div>

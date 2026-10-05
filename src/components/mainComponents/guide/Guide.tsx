@@ -1,16 +1,23 @@
 "use client";
 
-import { guide } from "@/types/types";
+import { checkpoint, guide } from "@/types/types";
 import styles from "./Guide.module.scss";
 import React, { useEffect, useRef, useState, useLayoutEffect } from "react";
 import Log from "./log/Log";
 import IconComponent from "@/components/nestedComponents/iconComponent/IconComponent";
 import VideoComponent from "@/components/nestedComponents/videoComponent/VideoComponent";
+import {
+    downloadGuideForOffline,
+    removeGuideDownload,
+    isGuideDownloaded,
+} from "@/lib/offlineGuide";
+import Checklist from "../checklist/Checklist";
 
 interface GuideProps {
     guide: guide;
     modelTitle?: string;
     versionTitle?: string;
+    fuelbed?: string;
 }
 
 export default function Guide(props: GuideProps) {
@@ -21,6 +28,32 @@ export default function Guide(props: GuideProps) {
     const [isInfoPopupVirgin, setIsInfoPopupVirgin] = useState<boolean>(true);
     const [burgerMenuIsShown, setBurgerMenuIsShown] = useState<boolean>(false);
     const [logPreviewIndex, setLogPreviewIndex] = useState<number | null>(null);
+    const [downloadPopupIsOpen, setDownloadPopupIsOpen] = useState<boolean>(false);
+    const [checklistIsShown, setChecklistIsShown] = useState<boolean>(false);
+
+    //new sw
+    const [isDownloaded, setIsDownloaded] = useState(false);
+
+    useEffect(() => {
+        isGuideDownloaded(props.guide.documentId).then(setIsDownloaded);
+    }, [props.guide.documentId]);
+
+    async function handleDownload() {
+        await downloadGuideForOffline(
+            props.guide,
+            props.modelTitle ?? "",
+            props.versionTitle ?? "",
+            props.fuelbed ?? "",
+            process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://localhost:1337",
+        );
+        setIsDownloaded(true);
+    }
+
+    async function handleRemoveDownload() {
+        await removeGuideDownload(props.guide.documentId);
+        setIsDownloaded(false);
+    }
+    //new sw end
 
     const currentLog = logs[currentLogIndex];
 
@@ -155,6 +188,7 @@ export default function Guide(props: GuideProps) {
                                     width={30}
                                     height={30}
                                     alt="Info regarding this guide"
+                                    unoptimized
                                 />
                             </div>
 
@@ -186,9 +220,118 @@ export default function Guide(props: GuideProps) {
                                             </span>
                                         </p>
                                     )}
+                                    {props.fuelbed && (
+                                        <p className={styles.fuelbedHeading}>
+                                            FUELBED:{" "}
+                                            <span className={styles.fuelbedTitle}>
+                                                {props.fuelbed}
+                                            </span>
+                                        </p>
+                                    )}
                                 </div>
                                 <p>{props.guide.guideText}</p>
                                 <button onClick={closeInfoPopup}>OK</button>
+                            </div>
+                        </div>
+
+                        {/* DOWNLOAD BUTTON */}
+                        <div className={styles.downloadWrapper}>
+                            <div
+                                className={`${styles.bgColor} ${downloadPopupIsOpen ? styles.increseZIndex : undefined}`}
+                            >
+                                {/*isDownloaded ? (
+                                    <button
+                                        className={styles.downloadBtn}
+                                        onClick={handleRemoveDownload}
+                                    >
+                                        <IconComponent
+                                            src="/icons/download_done.png"
+                                            width={30}
+                                            height={30}
+                                            alt="Undownload guide"
+                                        />
+                                    </button>
+                                ) : (
+                                    <button className={styles.downloadBtn} onClick={handleDownload}>
+                                        <IconComponent
+                                            src="/icons/download.png"
+                                            width={30}
+                                            height={30}
+                                            alt="Download guide"
+                                        />
+                                    </button>
+                                )*/}
+
+                                <button
+                                    className={styles.downloadIcon}
+                                    onClick={() => setDownloadPopupIsOpen((prev) => !prev)}
+                                >
+                                    {isDownloaded ? (
+                                        <IconComponent
+                                            src="/icons/download_done.png"
+                                            width={30}
+                                            height={30}
+                                            alt="Undownload guide"
+                                            unoptimized
+                                        />
+                                    ) : (
+                                        <IconComponent
+                                            src="/icons/download.png"
+                                            width={30}
+                                            height={30}
+                                            alt="Download guide"
+                                            unoptimized
+                                        />
+                                    )}
+                                </button>
+                            </div>
+                            {downloadPopupIsOpen && (
+                                <div
+                                    className={styles.bgLayerDownloadPopup}
+                                    onClick={() => setDownloadPopupIsOpen(false)}
+                                ></div>
+                            )}
+
+                            <div
+                                className={`${styles.downloadPopup} ${downloadPopupIsOpen ? styles.isOpen : undefined}`}
+                            >
+                                <p>
+                                    {isDownloaded
+                                        ? "This guide is downloaded"
+                                        : "Download this guide for offline use"}
+                                </p>
+                                {isDownloaded ? (
+                                    <div className={styles.downloadBtnsContainer}>
+                                        <button
+                                            className={styles.downloadBtn}
+                                            onClick={() => setDownloadPopupIsOpen(false)}
+                                        >
+                                            OK
+                                        </button>
+                                        <button
+                                            className={styles.downloadBtn}
+                                            onClick={() => {
+                                                handleRemoveDownload();
+                                                setDownloadPopupIsOpen(false);
+                                            }}
+                                        >
+                                            Remove
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <button
+                                        className={styles.downloadBtn}
+                                        onClick={async () => {
+                                            await handleDownload();
+                                            //setDownloadPopupIsOpen(false);
+                                            setTimeout(() => {
+                                                setDownloadPopupIsOpen(false);
+                                            }, 1200);
+                                        }}
+                                    >
+                                        Download
+                                    </button>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -211,6 +354,7 @@ export default function Guide(props: GuideProps) {
                         width={35}
                         height={35}
                         alt="Open burger menu"
+                        unoptimized
                     />
                 </button>
 
@@ -228,6 +372,7 @@ export default function Guide(props: GuideProps) {
                                 width={100}
                                 height={100}
                                 alt="Close burger menu"
+                                unoptimized
                             />
                         </button>
                         <h2 className={styles.burgerMenuHeading}>Jump to specific log</h2>
@@ -287,15 +432,35 @@ export default function Guide(props: GuideProps) {
                     PREVIOUS LOG
                 </button>
                 <button
-                    className={styles.changeLogBtn}
+                    className={`${styles.changeLogBtn} ${styles.nextLogBtn}`}
                     onClick={goToNext}
                     disabled={currentLogIndex === logs.length - 1}
                 >
                     NEXT LOG
                 </button>
+                {currentLogIndex === logs.length - 1 &&
+                    props.guide.end_of_installation_checklist && (
+                        <button
+                            className={styles.checklistBtn}
+                            onClick={() => setChecklistIsShown(true)}
+                        >
+                            ✓ CHECKLIST
+                        </button>
+                    )}
             </div>
 
+            {/* SPECIFIC LOG */}
             <Log log={currentLog} logIndex={currentLogIndex} />
+
+            {/* CHECKLIST */}
+            {checklistIsShown && props.guide.end_of_installation_checklist?.checkpoints && (
+                <div className={styles.checklistWrapper}>
+                    <Checklist
+                        checklist={props.guide.end_of_installation_checklist.checkpoints}
+                        closeChecklist={() => setChecklistIsShown(false)}
+                    />
+                </div>
+            )}
         </section>
     );
 }

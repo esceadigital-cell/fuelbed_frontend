@@ -42,19 +42,19 @@
         }
 
         .heading {
-            @include h1-styles;
+            @include h2-styles;
         }
     }
 
     .versionWrapper {
         display: flex;
         flex-direction: column;
-        gap: $gap-small;
+        //gap: $gap-small;
     }
 
     .versionSelect {
-        padding: 0.5rem;
-        @include h3-styles;
+        padding: 0.2rem 0.5rem;
+        @include h4-styles;
         width: 100%;
         border: none;
         border-radius: $border-radius;
@@ -64,7 +64,7 @@
     }
 
     .singleVersion {
-        @include h3-styles;
+        @include h4-styles;
     }
 
     .fuelbedsSection {
@@ -83,7 +83,7 @@
                 padding: 1rem;
                 display: flex;
                 flex-direction: column;
-                gap: $gap-small;
+                //gap: $gap-small;
                 //text-align: center;
                 height: 100%;
                 justify-content: space-between;

@@ -86,6 +86,7 @@ export default function MediaBox(props: MediaBoxProps) {
                                 alt="Previous"
                                 width={30}
                                 height={30}
+                                unoptimized
                             />
                         </div>
                     </button>
@@ -100,6 +101,7 @@ export default function MediaBox(props: MediaBoxProps) {
                                 alt="Next"
                                 width={30}
                                 height={30}
+                                unoptimized
                             />
                         </div>
                     </button>
