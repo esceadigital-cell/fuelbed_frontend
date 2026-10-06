@@ -108,3 +108,21 @@ export async function getGuideById(id: string) {
 
     return res.json();
 }
+
+// GET ALL GUIDE ID'S
+
+export async function getAllGuideIds(): Promise<string[]> {
+    const query = qs.stringify(
+        { fields: ["documentId"], pagination: { pageSize: 100 } },
+        { encodeValuesOnly: true },
+    );
+
+    const res = await fetch(`${STRAPI_URL}/api/guides?${query}`, {
+        headers: { Authorization: `Bearer ${process.env.STRAPI_API_KEY}` },
+    });
+
+    if (!res.ok) throw new Error("Failed to fetch guide ids");
+
+    const json = await res.json();
+    return json.data.map((g: { documentId: string }) => g.documentId);
+}

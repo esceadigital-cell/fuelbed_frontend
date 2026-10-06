@@ -34,10 +34,9 @@
 
         .arrowIconWrapper {
             display: flex;
-            transform: rotate(180deg);
 
             &.isOpen {
-                transform: rotate(0);
+                transform: rotate(180deg);
             }
         }
     }

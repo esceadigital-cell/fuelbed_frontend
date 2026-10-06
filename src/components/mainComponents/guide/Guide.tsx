@@ -2,7 +2,7 @@
 
 import { checkpoint, guide } from "@/types/types";
 import styles from "./Guide.module.scss";
-import React, { useEffect, useRef, useState, useLayoutEffect } from "react";
+import React, { useEffect, useRef, useState, useLayoutEffect, Suspense } from "react";
 import Log from "./log/Log";
 import IconComponent from "@/components/nestedComponents/iconComponent/IconComponent";
 import VideoComponent from "@/components/nestedComponents/videoComponent/VideoComponent";
@@ -12,12 +12,13 @@ import {
     isGuideDownloaded,
 } from "@/lib/offlineGuide";
 import Checklist from "../checklist/Checklist";
+import GuideTitles from "./guideTitles/GuideTitles";
 
 interface GuideProps {
     guide: guide;
-    modelTitle?: string;
-    versionTitle?: string;
-    fuelbed?: string;
+    //modelTitle?: string;
+    //versionTitle?: string;
+    //fuelbed?: string;
 }
 
 export default function Guide(props: GuideProps) {
@@ -39,11 +40,13 @@ export default function Guide(props: GuideProps) {
     }, [props.guide.documentId]);
 
     async function handleDownload() {
+        const params = new URLSearchParams(window.location.search);
+
         await downloadGuideForOffline(
             props.guide,
-            props.modelTitle ?? "",
-            props.versionTitle ?? "",
-            props.fuelbed ?? "",
+            params.get("modelTitle") ?? "",
+            params.get("versionTitle") ?? "",
+            params.get("fuelbed") ?? "",
             process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://localhost:1337",
         );
         setIsDownloaded(true);
@@ -203,7 +206,10 @@ export default function Guide(props: GuideProps) {
                                 onClick={(e) => e.stopPropagation()}
                                 onTransitionEnd={handleGuideTextTransitionEnd}
                             >
-                                <div>
+                                <Suspense fallback={null}>
+                                    <GuideTitles />
+                                </Suspense>
+                                {/*<div>
                                     {props.modelTitle && (
                                         <p className={styles.modelHeading}>
                                             MODEL:{" "}
@@ -228,7 +234,7 @@ export default function Guide(props: GuideProps) {
                                             </span>
                                         </p>
                                     )}
-                                </div>
+                                </div>*/}
                                 <p>{props.guide.guideText}</p>
                                 <button onClick={closeInfoPopup}>OK</button>
                             </div>

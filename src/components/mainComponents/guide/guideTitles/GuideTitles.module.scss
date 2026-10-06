@@ -1,0 +1,28 @@
+@use "../../../../styles/variables" as *;
+.modelHeading {
+    @include p-styles;
+    //font-weight: 800;
+
+    .modelTitle {
+        @include p-styles;
+        font-weight: normal;
+    }
+}
+
+.versionHeading {
+    @include p-styles;
+
+    .versionTitle {
+        @include p-styles;
+        font-weight: normal;
+    }
+}
+
+.fuelbedHeading {
+    @include p-styles;
+
+    .fuelbedTitle {
+        @include p-styles;
+        font-weight: normal;
+    }
+}

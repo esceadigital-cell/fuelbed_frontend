@@ -1,17 +1,18 @@
 import { DynamicPageProps } from "@/types/types";
-import styles from "./guidePage.module.scss";
-import { getGuideById } from "@/lib/api";
+//import styles from "./guidePage.module.scss";
+import { getAllGuideIds, getGuideById } from "@/lib/api";
 import BlockWrapper from "@/components/wrapperComponents/BlockWrapper/BlockWrapper";
 import ContentWrapper from "@/components/wrapperComponents/ContentWrapper/ContentWrapper";
 import Guide from "@/components/mainComponents/guide/Guide";
+import { notFound } from "next/navigation";
 
-interface GuidePageProps extends DynamicPageProps {
-    searchParams: Promise<{ modelTitle?: string; versionTitle?: string; fuelbed?: string }>;
+export async function generateStaticParams() {
+    const ids = await getAllGuideIds();
+    return ids.map((id) => ({ slug: id }));
 }
 
-export default async function GuidePage(props: GuidePageProps) {
+export default async function GuidePage(props: DynamicPageProps) {
     const { slug } = await props.params;
-    const { modelTitle, versionTitle, fuelbed } = await props.searchParams;
 
     const guideId = slug;
 
@@ -19,19 +20,14 @@ export default async function GuidePage(props: GuidePageProps) {
 
     const guide = guideRes.data[0];
 
-    if (!guide) return <h1>Error page</h1>;
+    if (!guide) notFound();
 
-    console.log(guide);
+    //console.log(guide);
 
     return (
         <BlockWrapper>
             <ContentWrapper>
-                <Guide
-                    guide={guide}
-                    modelTitle={modelTitle}
-                    versionTitle={versionTitle}
-                    fuelbed={fuelbed}
-                />
+                <Guide guide={guide} />
             </ContentWrapper>
         </BlockWrapper>
     );

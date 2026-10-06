@@ -30,7 +30,9 @@ export default function Checklist(props: ChecklistProps) {
                                                 e.currentTarget.classList.toggle(styles.checked)
                                             }
                                         >
-                                            <span className={styles.tickBox}></span>
+                                            <span className={styles.tickBox}>
+                                                <div className={styles.tickDot}></div>
+                                            </span>
                                             <span>{checkpoint.checkpoint}</span>
                                         </button>
                                     </li>

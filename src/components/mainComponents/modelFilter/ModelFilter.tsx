@@ -1,5 +1,5 @@
 import { getFuelTypes, getModels } from "@/lib/api";
-import styles from "./ModelFilter.module.scss";
+//import styles from "./ModelFilter.module.scss";
 import BlockWrapper from "@/components/wrapperComponents/BlockWrapper/BlockWrapper";
 import ContentWrapper from "@/components/wrapperComponents/ContentWrapper/ContentWrapper";
 import ClientFilter from "./clientFilter/ClientFilter";

@@ -71,7 +71,7 @@
                 pointer-events: auto;
             }
 
-            .modelHeading {
+            /*.modelHeading {
                 @include p-styles;
                 //font-weight: 800;
 
@@ -97,7 +97,7 @@
                     @include p-styles;
                     font-weight: normal;
                 }
-            }
+            }*/
 
             button {
                 @include btnStyles;
