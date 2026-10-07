@@ -32,6 +32,23 @@ export default function MediaBox(props: MediaBoxProps) {
         return () => track.removeEventListener("scroll", handleScroll);
     }, []);
 
+    // Slide track height adjustment to current slide
+    useEffect(() => {
+        const track = trackRef.current;
+        const slide = track?.children[currentIndex] as HTMLElement | undefined;
+        if (!track || !slide) return;
+
+        function updateHeight() {
+            if (track && slide) track.style.height = `${slide.offsetHeight}px`;
+        }
+
+        updateHeight();
+        const observer = new ResizeObserver(updateHeight);
+        observer.observe(slide);
+
+        return () => observer.disconnect();
+    }, [currentIndex, props.media]);
+
     function goToSlide(index: number) {
         const track = trackRef.current;
         if (!track) return;
@@ -62,7 +79,7 @@ export default function MediaBox(props: MediaBoxProps) {
                 </div>
             )}
             <div className={styles.wrapper} ref={trackRef}>
-                {props.media.map((media, i) => (
+                {props.media.map((media) => (
                     <div key={media.id} className={styles.mediaItem}>
                         {media.mime.includes("image") ? (
                             <ImageComponent image={media} />

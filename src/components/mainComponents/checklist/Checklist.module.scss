@@ -39,6 +39,24 @@
                     aspect-ratio: 1/1;
                     background-color: transparent;
                     border: 1px solid $color-dark;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+
+                    .line {
+                        width: 100%;
+                        height: 3px;
+                        position: absolute;
+                        border-radius: $border-radius;
+
+                        &.lineOne {
+                            transform: rotate(45deg);
+                        }
+                        &.lineTwo {
+                            transform: rotate(-45deg);
+                        }
+                    }
                 }
 
                 &.checked {
@@ -49,12 +67,8 @@
                         align-items: center;
                         padding: 1px;
 
-                        .tickDot {
-                            //margin: 1px;
-                            width: 100%;
-                            height: 100%;
-                            border-radius: 50%;
-                            background-color: rgba($color-dark, 0.8);
+                        .line {
+                            background-color: $color-dark;
                         }
                     }
                 }

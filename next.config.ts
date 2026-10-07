@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
                 pathname: "/uploads/**",
             },
         ],
-        dangerouslyAllowLocalIP: true,
+        dangerouslyAllowLocalIP: process.env.NEXT_PUBLIC_STRAPI_URL?.includes("localhost") ?? false,
     },
 };
 

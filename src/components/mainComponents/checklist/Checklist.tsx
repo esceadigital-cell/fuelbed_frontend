@@ -3,6 +3,7 @@ import styles from "./Checklist.module.scss";
 import ContentWrapper from "@/components/wrapperComponents/ContentWrapper/ContentWrapper";
 import BlockWrapper from "@/components/wrapperComponents/BlockWrapper/BlockWrapper";
 import Link from "next/link";
+import IconComponent from "@/components/nestedComponents/iconComponent/IconComponent";
 
 interface ChecklistProps {
     checklist: checkpoint[];
@@ -31,7 +32,12 @@ export default function Checklist(props: ChecklistProps) {
                                             }
                                         >
                                             <span className={styles.tickBox}>
-                                                <div className={styles.tickDot}></div>
+                                                <div
+                                                    className={`${styles.line} ${styles.lineOne}`}
+                                                ></div>
+                                                <div
+                                                    className={`${styles.line} ${styles.lineTwo}`}
+                                                ></div>
                                             </span>
                                             <span>{checkpoint.checkpoint}</span>
                                         </button>

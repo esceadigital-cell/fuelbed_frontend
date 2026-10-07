@@ -1,6 +1,6 @@
 "use client";
 
-import { checkpoint, guide } from "@/types/types";
+import { guide } from "@/types/types";
 import styles from "./Guide.module.scss";
 import React, { useEffect, useRef, useState, useLayoutEffect, Suspense } from "react";
 import Log from "./log/Log";

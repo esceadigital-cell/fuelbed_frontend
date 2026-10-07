@@ -49,7 +49,7 @@
     .versionWrapper {
         display: flex;
         flex-direction: column;
-        //gap: $gap-small;
+        gap: $gap-xs;
     }
 
     .versionSelect {
@@ -70,7 +70,7 @@
     .fuelbedsSection {
         display: flex;
         flex-direction: column;
-        gap: $gap-small;
+        gap: $gap-xs;
 
         .fuelbedsWrapper {
             display: grid;
@@ -83,7 +83,7 @@
                 padding: 1rem;
                 display: flex;
                 flex-direction: column;
-                gap: 0.5rem;
+                gap: 1rem;
                 //text-align: center;
                 height: 100%;
                 justify-content: space-between;
@@ -99,11 +99,25 @@
 
             .seeGuideBtn {
                 //@include btnStyles;
-                @include p-styles;
-                align-self: end;
+                @include btnStyles;
+                //@include p-styles;
+                padding: 0.1rem 0rem;
+                //align-self: end;
                 //background-color: $color-light;
                 //border: none;
                 //text-align: center;
+            }
+
+            .noGuideAddedBox {
+                display: flex;
+                flex-direction: column;
+                gap: $gap-small;
+                height: 100%;
+                background-color: rgba($color-dark, 0.8);
+                color: $color-light;
+                border-radius: $border-radius;
+                padding: 1rem;
+                border: 1px solid red;
             }
         }
     }

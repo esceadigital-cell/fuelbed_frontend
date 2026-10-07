@@ -71,7 +71,7 @@ export default function Log(props: LogProps) {
 
             {props.log.logText && (
                 <div className={styles.logTextWrapper}>
-                    <p className={styles.logNumber}>LOG {props.logIndex + 1}:</p>
+                    <p className={styles.logNumber}>LOG {props.logIndex + 1}</p>
                     <p>{props.log.logText}</p>
                 </div>
             )}

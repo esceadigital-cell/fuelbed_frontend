@@ -71,34 +71,6 @@
                 pointer-events: auto;
             }
 
-            /*.modelHeading {
-                @include p-styles;
-                //font-weight: 800;
-
-                .modelTitle {
-                    @include p-styles;
-                    font-weight: normal;
-                }
-            }
-
-            .versionHeading {
-                @include p-styles;
-
-                .versionTitle {
-                    @include p-styles;
-                    font-weight: normal;
-                }
-            }
-
-            .fuelbedHeading {
-                @include p-styles;
-
-                .fuelbedTitle {
-                    @include p-styles;
-                    font-weight: normal;
-                }
-            }*/
-
             button {
                 @include btnStyles;
                 background-color: $color-light;
@@ -211,7 +183,7 @@
     @include h2-styles;
 
     .currentLogCount {
-        color: $color-orange;
+        //color: $color-orange;
         font-size: 1.4em;
         //background-color: $color-dark;
         //border-radius: 50%;

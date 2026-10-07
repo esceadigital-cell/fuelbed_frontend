@@ -27,8 +27,11 @@
     .wrapper {
         overflow-x: auto;
         display: flex;
+        align-items: flex-start; // each slide keeps its own height instead of stretching
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
+        transition: height 0.3s;
+        background-color: $color-dark;
 
         .mediaItem {
             flex: 0 0 100%;
