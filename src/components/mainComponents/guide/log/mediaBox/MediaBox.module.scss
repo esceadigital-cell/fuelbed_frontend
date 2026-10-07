@@ -26,6 +26,7 @@
 
     .wrapper {
         overflow-x: auto;
+        overflow-y: hidden;
         display: flex;
         align-items: flex-start; // each slide keeps its own height instead of stretching
         scroll-snap-type: x mandatory;

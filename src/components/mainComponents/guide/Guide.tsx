@@ -42,14 +42,18 @@ export default function Guide(props: GuideProps) {
     async function handleDownload() {
         const params = new URLSearchParams(window.location.search);
 
-        await downloadGuideForOffline(
-            props.guide,
-            params.get("modelTitle") ?? "",
-            params.get("versionTitle") ?? "",
-            params.get("fuelbed") ?? "",
-            process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://localhost:1337",
-        );
-        setIsDownloaded(true);
+        try {
+            await downloadGuideForOffline(
+                props.guide,
+                params.get("modelTitle") ?? "",
+                params.get("versionTitle") ?? "",
+                params.get("fuelbed") ?? "",
+            );
+            setIsDownloaded(true);
+        } catch (err) {
+            console.error("Download failed:", err);
+            alert("The download failed. Please check your connection and try again.");
+        }
     }
 
     async function handleRemoveDownload() {

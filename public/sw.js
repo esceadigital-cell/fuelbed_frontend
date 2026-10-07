@@ -1,8 +1,11 @@
+// bump this when you change offline.html, the font or any precached icon
+const APP_SHELL = "app-shell-v1";
+
 self.addEventListener("install", (event) => {
     self.skipWaiting();
     event.waitUntil(
         caches
-            .open("app-shell")
+            .open(APP_SHELL)
             .then((cache) =>
                 cache.addAll([
                     "/offline.html",
@@ -20,7 +23,19 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("activate", (event) => {
-    event.waitUntil(self.clients.claim());
+    event.waitUntil(
+        caches
+            .keys()
+            .then((keys) =>
+                Promise.all(
+                    keys
+                        // delete old app-shell caches, keep guides and next-static
+                        .filter((key) => key.startsWith("app-shell") && key !== APP_SHELL)
+                        .map((key) => caches.delete(key)),
+                ),
+            )
+            .then(() => self.clients.claim()),
+    );
 });
 
 self.addEventListener("fetch", (event) => {
@@ -53,7 +68,7 @@ self.addEventListener("fetch", (event) => {
     }
 
     // Strapi media: cache-first
-    if (url.pathname.startsWith("/uploads/")) {
+    if (url.pathname.startsWith("/uploads/") || url.hostname.endsWith(".media.strapiapp.com")) {
         event.respondWith(
             caches.match(event.request).then((cached) => cached || fetch(event.request)),
         );
