@@ -1,5 +1,6 @@
 import { getPageBySlug } from "@/lib/api";
 import DynamicComponent from "./DynamicComponent";
+import { notFound } from "next/navigation";
 
 interface DynamicPageProps {
     slug: string;
@@ -8,7 +9,7 @@ interface DynamicPageProps {
 export default async function DynamicPage(props: DynamicPageProps) {
     const page = await getPageBySlug(props.slug);
 
-    if (!page) return <h1>Error page</h1>;
+    if (!page) notFound();
 
     const pageBlocks = page.blocks;
 
