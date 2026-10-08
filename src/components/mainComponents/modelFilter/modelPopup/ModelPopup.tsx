@@ -77,43 +77,39 @@ export default function ModelPopup(props: ModelPopupProps) {
                         <h4>Fuelbeds</h4>
 
                         <div className={styles.fuelbedsWrapper}>
-                            {selectedVersion.fuelbeds?.map((fuelbed) => (
-                                <div key={fuelbed.id} className={styles.fuelbedWrapper}>
-                                    {fuelbed.guide ? (
-                                        <Link
-                                            href={{
-                                                pathname: `/guide/${fuelbed.guide?.documentId}`,
-                                                query: {
-                                                    modelTitle: model.title,
-                                                    versionTitle: selectedVersion.title,
-                                                    fuelbed: fuelbed.fuelbed.title,
-                                                },
-                                            }}
-                                            className={styles.fuelbedLink}
-                                        >
-                                            <div className={styles.fuelbedBtn}>
-                                                <h4 className={styles.fuelbedHeading}>
-                                                    {fuelbed.fuelbed?.title}
-                                                </h4>
-                                                {fuelbed.fuelbed.image && (
-                                                    <div className={styles.imgWrapper}>
-                                                        <ImageComponent
-                                                            image={fuelbed.fuelbed.image}
-                                                        />
-                                                    </div>
-                                                )}
-
-                                                <div className={styles.seeGuideBtn}>SEE GUIDE</div>
-                                            </div>
-                                        </Link>
-                                    ) : (
-                                        <div className={styles.noGuideAddedBox}>
-                                            <h4>{fuelbed.fuelbed?.title}</h4>
-                                            <p>No guide added for this fuelbed yet</p>
+                            {selectedVersion.fuelbeds?.map((fuelbed) =>
+                                fuelbed.guide ? (
+                                    <Link
+                                        key={fuelbed.id}
+                                        href={{
+                                            pathname: `/guide/${fuelbed.guide.documentId}`,
+                                            query: {
+                                                modelTitle: model.title,
+                                                versionTitle: selectedVersion.title,
+                                                fuelbed: fuelbed.fuelbed.title,
+                                            },
+                                        }}
+                                        className={styles.fuelbedLink}
+                                    >
+                                        <div className={styles.fuelbedBtn}>
+                                            <h4 className={styles.fuelbedHeading}>
+                                                {fuelbed.fuelbed?.title}
+                                            </h4>
+                                            {fuelbed.fuelbed.image && (
+                                                <div className={styles.imgWrapper}>
+                                                    <ImageComponent image={fuelbed.fuelbed.image} />
+                                                </div>
+                                            )}
+                                            <div className={styles.seeGuideBtn}>SEE GUIDE</div>
                                         </div>
-                                    )}
-                                </div>
-                            ))}
+                                    </Link>
+                                ) : (
+                                    <div key={fuelbed.id} className={styles.noGuideAddedBox}>
+                                        <h4>{fuelbed.fuelbed?.title}</h4>
+                                        <p>No guide added for this fuelbed yet</p>
+                                    </div>
+                                ),
+                            )}
                         </div>
                     </div>
                 ) : (
