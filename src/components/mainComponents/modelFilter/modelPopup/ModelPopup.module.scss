@@ -20,8 +20,8 @@
     background-color: $color-light;
     margin: 1rem;
     //height: min-content;
-    //max-height: calc(100vh - 2rem);
-    //max-height: calc(100dvh - 2rem);
+    max-height: calc(100vh - 2rem);
+    max-height: calc(100dvh - 2rem);
     overflow-y: auto;
     position: relative;
     border-radius: $border-radius;
@@ -106,7 +106,7 @@
                     //text-align: center;
                     //height: 100%;
                     //justify-content: space-between;
-                    //max-height: fit-content;
+                    max-height: fit-content;
 
                     border: 3px solid green;
 
