@@ -20,8 +20,8 @@
     background-color: $color-light;
     margin: 1rem;
     //height: min-content;
-    max-height: calc(100vh - 2rem);
-    max-height: calc(100dvh - 2rem);
+    //max-height: calc(100vh - 2rem);
+    //max-height: calc(100dvh - 2rem);
     overflow-y: auto;
     position: relative;
     border-radius: $border-radius;
