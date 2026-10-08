@@ -301,10 +301,14 @@
             --offset-y: 0px;
             transform: translate(-50%, calc(-50% + var(--offset-y)));
             width: calc(100% - 3rem);
-            height: fit-content;
+            //height: fit-content;
+            //aspect-ratio: 7/4;
             z-index: 10;
             border: 2px solid $color-orange;
             border-radius: $border-radius;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 }
