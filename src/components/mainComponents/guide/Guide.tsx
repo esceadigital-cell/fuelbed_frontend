@@ -460,7 +460,9 @@ export default function Guide(props: GuideProps) {
             </div>
 
             {/* SPECIFIC LOG */}
-            <Log log={currentLog} logIndex={currentLogIndex} />
+            <div className={styles.logZIndex}>
+                <Log log={currentLog} logIndex={currentLogIndex} />
+            </div>
 
             {/* CHECKLIST */}
             {checklistIsShown && props.guide.end_of_installation_checklist?.checkpoints && (
