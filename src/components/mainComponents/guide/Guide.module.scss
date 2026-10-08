@@ -54,7 +54,7 @@
             pointer-events: none; // can't be clicked/focused while hidden
 
             &.isVirgin {
-                height: calc(100vh - 8rem);
+                height: calc(100dvh - 8rem);
                 justify-content: center;
             }
 
