@@ -27,6 +27,7 @@
     border-radius: $border-radius;
     display: flex;
     flex-direction: column;
+    align-self: center;
     gap: $gap-medium;
     width: 100%;
     max-width: calc($page-max-width - (($padding-tablet * 4)));
