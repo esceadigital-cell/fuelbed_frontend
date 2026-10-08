@@ -95,16 +95,16 @@
 
                 .fuelbedBtn {
                     //flex: 1;
-                    //height: 100%;
+                    height: 100%;
                     border: 1px solid $color-dark;
                     border-radius: $border-radius;
                     padding: 1rem;
-                    display: flex;
-                    flex-direction: column;
+                    display: grid;
+                    grid-template-rows: 1fr auto auto;
                     gap: 1rem;
                     width: 100%;
                     //text-align: center;
-                    height: 100%;
+                    //height: 100%;
                     //justify-content: space-between;
                     //max-height: fit-content;
 
