@@ -85,10 +85,10 @@
             align-content: start; // rows only as tall as their content
             gap: $gap-small;
 
-            border: 3px solid red;
+            //border: 3px solid red;
 
             //max-height: fit-content;
-            border: 3px solid purple;
+            //border: 3px solid purple;
 
             .fuelbedLink {
                 width: 100%;
@@ -96,7 +96,7 @@
                 //display: flex;
                 max-height: fit-content;
 
-                border: 3px solid yellow;
+                //border: 3px solid yellow;
 
                 .fuelbedBtn {
                     //flex: 1;
@@ -113,7 +113,7 @@
                     //justify-content: space-between;
                     max-height: fit-content;
 
-                    border: 3px solid green;
+                    //border: 3px solid green;
 
                     .fuelbedHeading {
                         flex-grow: 1;

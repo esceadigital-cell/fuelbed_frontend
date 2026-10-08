@@ -53,6 +53,8 @@
             transition: clip-path 0.4s ease;
             pointer-events: none; // can't be clicked/focused while hidden
 
+            will-change: clip-path;
+
             &.isVirgin {
                 height: calc(100dvh - 8rem);
                 justify-content: center;
@@ -107,8 +109,12 @@
                 position: relative;
                 z-index: 5;
 
+                transition: z-index 0s linear 0.4s;
+
                 &.increseZIndex {
                     z-index: 11;
+
+                    transition: z-index 0s;
                 }
 
                 .downloadIcon {
@@ -135,8 +141,12 @@
                 max-width: calc(100vw - 10rem);
                 padding: 2rem;
                 clip-path: inset(0 100% 100% 0);
-                transition: clip-path 0.4s ease;
                 pointer-events: none; // can't be clicked/focused while hidden
+
+                will-change: clip-path;
+                transition:
+                    clip-path 0.4s ease,
+                    z-index 0s linear 0.4s;
 
                 @media screen and (min-width: $page-max-width) {
                     max-width: 45rem;
@@ -146,6 +156,9 @@
                     clip-path: inset(0 0 0 0); // fully revealed
                     pointer-events: auto;
                     z-index: 10;
+                    transition:
+                        clip-path 0.4s ease,
+                        z-index 0s;
                 }
 
                 .downloadBtnsContainer {
