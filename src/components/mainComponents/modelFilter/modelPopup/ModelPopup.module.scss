@@ -83,25 +83,26 @@
             //border: 3px solid red;
 
             .fuelbedWrapper {
-                display: flex;
+                //display: flex;
                 //grid-template-columns: auto 1fr auto;
-                width: 100%;
+                //width: 100%;
                 //max-height: 100%;
                 //position: relative;
-                max-height: fit-content;
+                //max-height: fit-content;
 
                 //border: 3px solid purple;
 
                 .fuelbedLink {
                     //width: 100%;
-                    flex: 1;
-                    display: flex;
+                    //flex: 1;
+                    //display: flex;
                     //max-height: 100%;
 
                     //border: 3px solid yellow;
 
                     .fuelbedBtn {
-                        flex: 1;
+                        //flex: 1;
+                        height: 100%;
                         border: 1px solid $color-dark;
                         border-radius: $border-radius;
                         padding: 1rem;
@@ -110,10 +111,14 @@
                         gap: 1rem;
                         //text-align: center;
                         //height: 100%;
-                        justify-content: space-between;
+                        //justify-content: space-between;
                         //max-height: fit-content;
 
                         //border: 3px solid green;
+
+                        .fuelbedHeading {
+                            flex-grow: 1;
+                        }
 
                         .imgWrapper {
                             width: 100%;

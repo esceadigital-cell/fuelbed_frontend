@@ -92,7 +92,9 @@ export default function ModelPopup(props: ModelPopupProps) {
                                             className={styles.fuelbedLink}
                                         >
                                             <div className={styles.fuelbedBtn}>
-                                                <h4>{fuelbed.fuelbed?.title}</h4>
+                                                <h4 className={styles.fuelbedHeading}>
+                                                    {fuelbed.fuelbed?.title}
+                                                </h4>
                                                 {fuelbed.fuelbed.image && (
                                                     <div className={styles.imgWrapper}>
                                                         <ImageComponent
