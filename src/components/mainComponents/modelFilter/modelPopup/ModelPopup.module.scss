@@ -32,6 +32,10 @@
     width: 100%;
     max-width: calc($page-max-width - (($padding-tablet * 4)));
 
+    > * {
+        flex-shrink: 0;
+    }
+
     .headingAnCloseBtn {
         display: flex;
         gap: $gap-medium;
@@ -78,6 +82,7 @@
         .fuelbedsWrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
+            align-content: start; // rows only as tall as their content
             gap: $gap-small;
 
             border: 3px solid red;
@@ -95,7 +100,7 @@
 
                 .fuelbedBtn {
                     //flex: 1;
-                    //min-height: 100%;
+                    min-height: 100%;
                     border: 1px solid $color-dark;
                     border-radius: $border-radius;
                     padding: 1rem;
