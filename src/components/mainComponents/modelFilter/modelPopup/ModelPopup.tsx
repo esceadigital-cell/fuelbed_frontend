@@ -78,7 +78,7 @@ export default function ModelPopup(props: ModelPopupProps) {
 
                         <div className={styles.fuelbedsWrapper}>
                             {selectedVersion.fuelbeds?.map((fuelbed) => (
-                                <div key={fuelbed.id}>
+                                <div key={fuelbed.id} className={styles.fuelbedWrapper}>
                                     {fuelbed.guide ? (
                                         <Link
                                             href={{
@@ -89,6 +89,7 @@ export default function ModelPopup(props: ModelPopupProps) {
                                                     fuelbed: fuelbed.fuelbed.title,
                                                 },
                                             }}
+                                            className={styles.fuelbedLink}
                                         >
                                             <div className={styles.fuelbedBtn}>
                                                 <h4>{fuelbed.fuelbed?.title}</h4>

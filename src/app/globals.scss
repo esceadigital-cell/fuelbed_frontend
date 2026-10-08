@@ -20,11 +20,11 @@ body {
     min-height: 100%;
     background-color: $color-light;
     font-family: var(--font-main), sans-serif;
-    min-height: 100vh;
+    min-height: 100dvh;
 }
 
 a {
-    color: inherit;
+    color: $color-dark;
     text-decoration: none;
     @include p-styles;
 }
