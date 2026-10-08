@@ -304,8 +304,9 @@
             //height: fit-content;
             //aspect-ratio: 7/4;
             z-index: 10;
-            border: 2px solid $color-orange;
+            //border: 2px solid $color-orange;
             border-radius: $border-radius;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;

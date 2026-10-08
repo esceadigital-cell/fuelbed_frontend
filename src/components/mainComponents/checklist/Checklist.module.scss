@@ -4,7 +4,7 @@
     background-color: $color-light;
     display: flex;
     flex-direction: column;
-    gap: $gap-medium;
+    gap: $gap-large;
 
     .backBtn {
         @include btnStyles;
@@ -14,7 +14,7 @@
     .list {
         display: flex;
         flex-direction: column;
-        gap: $gap-small;
+        gap: $gap-medium;
     }
 
     ul {
@@ -22,7 +22,7 @@
         @include p-styles;
         display: flex;
         flex-direction: column;
-        gap: $gap-small;
+        gap: $gap-medium;
 
         li {
             .checkpoint {
