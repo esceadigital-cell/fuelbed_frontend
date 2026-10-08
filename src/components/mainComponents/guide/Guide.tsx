@@ -213,32 +213,6 @@ export default function Guide(props: GuideProps) {
                                 <Suspense fallback={null}>
                                     <GuideTitles />
                                 </Suspense>
-                                {/*<div>
-                                    {props.modelTitle && (
-                                        <p className={styles.modelHeading}>
-                                            MODEL:{" "}
-                                            <span className={styles.modelTitle}>
-                                                {props.modelTitle}
-                                            </span>
-                                        </p>
-                                    )}
-                                    {props.versionTitle && (
-                                        <p className={styles.versionHeading}>
-                                            VERSION:{" "}
-                                            <span className={styles.versionTitle}>
-                                                {props.versionTitle}
-                                            </span>
-                                        </p>
-                                    )}
-                                    {props.fuelbed && (
-                                        <p className={styles.fuelbedHeading}>
-                                            FUELBED:{" "}
-                                            <span className={styles.fuelbedTitle}>
-                                                {props.fuelbed}
-                                            </span>
-                                        </p>
-                                    )}
-                                </div>*/}
                                 <p>{props.guide.guideText}</p>
                                 <button onClick={closeInfoPopup}>OK</button>
                             </div>
@@ -249,29 +223,6 @@ export default function Guide(props: GuideProps) {
                             <div
                                 className={`${styles.bgColor} ${downloadPopupIsOpen ? styles.increseZIndex : undefined}`}
                             >
-                                {/*isDownloaded ? (
-                                    <button
-                                        className={styles.downloadBtn}
-                                        onClick={handleRemoveDownload}
-                                    >
-                                        <IconComponent
-                                            src="/icons/download_done.png"
-                                            width={30}
-                                            height={30}
-                                            alt="Undownload guide"
-                                        />
-                                    </button>
-                                ) : (
-                                    <button className={styles.downloadBtn} onClick={handleDownload}>
-                                        <IconComponent
-                                            src="/icons/download.png"
-                                            width={30}
-                                            height={30}
-                                            alt="Download guide"
-                                        />
-                                    </button>
-                                )*/}
-
                                 <button
                                     className={styles.downloadIcon}
                                     onClick={() => setDownloadPopupIsOpen((prev) => !prev)}
