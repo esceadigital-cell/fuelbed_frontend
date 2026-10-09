@@ -39,7 +39,9 @@ export default function Checklist(props: ChecklistProps) {
                                                     className={`${styles.line} ${styles.lineTwo}`}
                                                 ></div>
                                             </span>
-                                            <span>{checkpoint.checkpoint}</span>
+                                            <span className={styles.text}>
+                                                {checkpoint.checkpoint}
+                                            </span>
                                         </button>
                                     </li>
                                 ))}

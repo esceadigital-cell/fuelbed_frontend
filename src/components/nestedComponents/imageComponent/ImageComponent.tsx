@@ -16,6 +16,7 @@ export default function ImageComponent(props: ImageComponentProps) {
                 height={props.image.height}
                 alt={props.image.alternativeText ?? ""}
                 className={styles.img}
+                unoptimized
             />
         </div>
     );

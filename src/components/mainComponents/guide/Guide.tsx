@@ -24,6 +24,8 @@ interface GuideProps {
 export default function Guide(props: GuideProps) {
     const logs = props.guide.logs;
 
+    console.log(props.guide);
+
     const [currentLogIndex, setCurrentLogIndex] = useState<number>(0);
     const [guideTextIsShown, setGuideTextIsShown] = useState<boolean>(true);
     const [isInfoPopupVirgin, setIsInfoPopupVirgin] = useState<boolean>(true);
