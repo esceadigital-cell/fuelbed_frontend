@@ -13,12 +13,10 @@ import {
 } from "@/lib/offlineGuide";
 import Checklist from "../checklist/Checklist";
 import GuideTitles from "./guideTitles/GuideTitles";
+import Spinner from "@/components/nestedComponents/spinner/Spinner";
 
 interface GuideProps {
     guide: guide;
-    //modelTitle?: string;
-    //versionTitle?: string;
-    //fuelbed?: string;
 }
 
 export default function Guide(props: GuideProps) {
@@ -33,6 +31,7 @@ export default function Guide(props: GuideProps) {
     const [logPreviewIndex, setLogPreviewIndex] = useState<number | null>(null);
     const [downloadPopupIsOpen, setDownloadPopupIsOpen] = useState<boolean>(false);
     const [checklistIsShown, setChecklistIsShown] = useState<boolean>(false);
+    const [isDownloading, setIsDownloading] = useState<boolean>(false);
 
     //new sw
     const [isDownloaded, setIsDownloaded] = useState(false);
@@ -43,6 +42,7 @@ export default function Guide(props: GuideProps) {
 
     async function handleDownload() {
         const params = new URLSearchParams(window.location.search);
+        setIsDownloading(true);
 
         try {
             await downloadGuideForOffline(
@@ -52,9 +52,13 @@ export default function Guide(props: GuideProps) {
                 params.get("fuelbed") ?? "",
             );
             setIsDownloaded(true);
+            return true;
         } catch (err) {
             console.error("Download failed:", err);
             alert("The download failed. Please check your connection and try again.");
+            return false;
+        } finally {
+            setIsDownloading(false);
         }
     }
 
@@ -258,11 +262,16 @@ export default function Guide(props: GuideProps) {
                             <div
                                 className={`${styles.downloadPopup} ${downloadPopupIsOpen ? styles.isOpen : undefined}`}
                             >
-                                <p>
-                                    {isDownloaded
-                                        ? "This guide is downloaded"
-                                        : "Download this guide for offline use"}
-                                </p>
+                                {!isDownloading && (
+                                    <p>
+                                        {isDownloaded
+                                            ? "This guide is downloaded"
+                                            : "Download this guide for offline use"}
+                                    </p>
+                                )}
+
+                                {isDownloading && <Spinner />}
+
                                 {isDownloaded ? (
                                     <div className={styles.downloadBtnsContainer}>
                                         <button
@@ -284,15 +293,17 @@ export default function Guide(props: GuideProps) {
                                 ) : (
                                     <button
                                         className={styles.downloadBtn}
+                                        disabled={isDownloading}
                                         onClick={async () => {
-                                            await handleDownload();
-                                            //setDownloadPopupIsOpen(false);
-                                            setTimeout(() => {
-                                                setDownloadPopupIsOpen(false);
-                                            }, 1200);
+                                            const success = await handleDownload();
+                                            if (success) {
+                                                setTimeout(() => {
+                                                    setDownloadPopupIsOpen(false);
+                                                }, 2000);
+                                            }
                                         }}
                                     >
-                                        Download
+                                        {isDownloading ? "Downloading..." : "Download"}
                                     </button>
                                 )}
                             </div>
@@ -302,7 +313,7 @@ export default function Guide(props: GuideProps) {
 
                 {/* LOG COUNT */}
                 <h1 className={styles.logCount}>
-                    Log <span className={styles.currentLogCount}>{currentLogIndex + 1}</span> /{" "}
+                    LOG <span className={styles.currentLogCount}>{currentLogIndex + 1}</span> /{" "}
                     {logs.length}
                 </h1>
 
