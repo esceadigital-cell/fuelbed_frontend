@@ -192,7 +192,7 @@ export default function Guide(props: GuideProps) {
     return (
         <section className={styles.wrapper}>
             <div className={styles.guideHeader}>
-                {props.guide.guideText && props.guide.guideText.length > 0 && (
+                <div className={styles.leftIconsWrapper}>
                     <div className={styles.guideInfoTextWrapper}>
                         <div className={styles.infoIconWrapper} onClick={toggleInfoPopup}>
                             <div className={styles.bgColor}>
@@ -219,97 +219,99 @@ export default function Guide(props: GuideProps) {
                                 <Suspense fallback={null}>
                                     <GuideTitles />
                                 </Suspense>
-                                <p>{props.guide.guideText}</p>
+                                {props.guide.guideText && props.guide.guideText.length > 0 && (
+                                    <p>{props.guide.guideText}</p>
+                                )}
                                 <button onClick={closeInfoPopup}>OK</button>
                             </div>
                         </div>
+                    </div>
 
-                        {/* DOWNLOAD BUTTON */}
-                        <div className={styles.downloadWrapper}>
-                            <div
-                                className={`${styles.bgColor} ${downloadPopupIsOpen ? styles.increseZIndex : undefined}`}
+                    {/* DOWNLOAD BUTTON */}
+                    <div className={styles.downloadWrapper}>
+                        <div
+                            className={`${styles.bgColor} ${downloadPopupIsOpen ? styles.increseZIndex : undefined}`}
+                        >
+                            <button
+                                className={styles.downloadIcon}
+                                onClick={() => setDownloadPopupIsOpen((prev) => !prev)}
                             >
-                                <button
-                                    className={styles.downloadIcon}
-                                    onClick={() => setDownloadPopupIsOpen((prev) => !prev)}
-                                >
-                                    {isDownloaded ? (
-                                        <IconComponent
-                                            src="/icons/download_done.png"
-                                            width={30}
-                                            height={30}
-                                            alt="Undownload guide"
-                                            unoptimized
-                                        />
-                                    ) : (
-                                        <IconComponent
-                                            src="/icons/download.png"
-                                            width={30}
-                                            height={30}
-                                            alt="Download guide"
-                                            unoptimized
-                                        />
-                                    )}
-                                </button>
-                            </div>
-                            {downloadPopupIsOpen && (
-                                <div
-                                    className={styles.bgLayerDownloadPopup}
-                                    onClick={() => setDownloadPopupIsOpen(false)}
-                                ></div>
+                                {isDownloaded ? (
+                                    <IconComponent
+                                        src="/icons/download_done.png"
+                                        width={30}
+                                        height={30}
+                                        alt="Undownload guide"
+                                        unoptimized
+                                    />
+                                ) : (
+                                    <IconComponent
+                                        src="/icons/download.png"
+                                        width={30}
+                                        height={30}
+                                        alt="Download guide"
+                                        unoptimized
+                                    />
+                                )}
+                            </button>
+                        </div>
+                        {downloadPopupIsOpen && (
+                            <div
+                                className={styles.bgLayerDownloadPopup}
+                                onClick={() => setDownloadPopupIsOpen(false)}
+                            ></div>
+                        )}
+
+                        <div
+                            className={`${styles.downloadPopup} ${downloadPopupIsOpen ? styles.isOpen : undefined}`}
+                        >
+                            {!isDownloading && (
+                                <p>
+                                    {isDownloaded
+                                        ? "This guide is downloaded"
+                                        : "Download this guide for offline use"}
+                                </p>
                             )}
 
-                            <div
-                                className={`${styles.downloadPopup} ${downloadPopupIsOpen ? styles.isOpen : undefined}`}
-                            >
-                                {!isDownloading && (
-                                    <p>
-                                        {isDownloaded
-                                            ? "This guide is downloaded"
-                                            : "Download this guide for offline use"}
-                                    </p>
-                                )}
+                            {isDownloading && <Spinner />}
 
-                                {isDownloading && <Spinner />}
-
-                                {isDownloaded ? (
-                                    <div className={styles.downloadBtnsContainer}>
-                                        <button
-                                            className={styles.downloadBtn}
-                                            onClick={() => setDownloadPopupIsOpen(false)}
-                                        >
-                                            OK
-                                        </button>
-                                        <button
-                                            className={styles.downloadBtn}
-                                            onClick={() => {
-                                                handleRemoveDownload();
-                                                setDownloadPopupIsOpen(false);
-                                            }}
-                                        >
-                                            Remove
-                                        </button>
-                                    </div>
-                                ) : (
+                            {isDownloaded ? (
+                                <div className={styles.downloadBtnsContainer}>
                                     <button
                                         className={styles.downloadBtn}
-                                        disabled={isDownloading}
-                                        onClick={async () => {
-                                            const success = await handleDownload();
-                                            if (success) {
-                                                setTimeout(() => {
-                                                    setDownloadPopupIsOpen(false);
-                                                }, 2000);
-                                            }
+                                        onClick={() => setDownloadPopupIsOpen(false)}
+                                    >
+                                        OK
+                                    </button>
+                                    <button
+                                        className={styles.downloadBtn}
+                                        onClick={() => {
+                                            handleRemoveDownload();
+                                            setDownloadPopupIsOpen(false);
                                         }}
                                     >
-                                        {isDownloading ? "Downloading..." : "Download"}
+                                        Remove
                                     </button>
-                                )}
-                            </div>
+                                </div>
+                            ) : (
+                                <button
+                                    className={styles.downloadBtn}
+                                    disabled={isDownloading}
+                                    onClick={async () => {
+                                        const success = await handleDownload();
+                                        if (success) {
+                                            setTimeout(() => {
+                                                setDownloadPopupIsOpen(false);
+                                            }, 2000);
+                                        }
+                                    }}
+                                >
+                                    {isDownloading ? "Downloading..." : "Download"}
+                                </button>
+                            )}
                         </div>
                     </div>
-                )}
+                </div>
 
                 {/* LOG COUNT */}
                 <h1 className={styles.logCount}>
