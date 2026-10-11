@@ -229,8 +229,8 @@
     right: 0;
     width: calc(100vw - 2.5rem);
     max-width: 50rem;
-    height: 100vh;
-    max-height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
     overflow-y: auto;
     //padding: calc($moduleTopBottomPadding + $headerHeight + 0.5rem) $padding-mobile 1rem 1rem;
     padding: 0 $padding-mobile 1rem 1rem;
@@ -243,6 +243,7 @@
     z-index: 100;
     transform: translateX(100%);
     transition: transform 0.3s;
+    overscroll-behavior: contain;
 
     @media screen and (min-width: $breakpoint-mobile) {
         padding: $moduleTopBottomPadding $padding-tablet;
@@ -291,7 +292,7 @@
         gap: $gap-small;
         //overflow-y: auto;
         border-radius: $border-radius;
-        background-color: $color-light-dark;
+        //background-color: $color-light-dark;
         padding: 1rem;
     }
 
@@ -393,6 +394,7 @@
     right: 0;
     bottom: 0;
     overflow-y: auto;
+    overscroll-behavior: contain;
     background-color: $color-light;
     z-index: 10;
     padding-top: $headerHeight;
