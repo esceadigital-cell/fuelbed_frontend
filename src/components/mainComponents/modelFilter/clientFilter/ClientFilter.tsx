@@ -48,6 +48,7 @@ export default function ClientFilter(props: ClientFilterProps) {
         <section className={styles.wrapper}>
             {/* SEARCH */}
             <div>
+                <h1 className={styles.heading}>Choose model</h1>
                 <input
                     className={styles.searchInput}
                     type="search"
@@ -104,7 +105,7 @@ export default function ClientFilter(props: ClientFilterProps) {
             {/* FUEL TYPES FILTER BUTTONS */}
             {props.fuelTypes && props.fuelTypes.length > 0 && (
                 <div className={styles.fuelTypeFilterButtonsWrapper}>
-                    <h2 className={styles.fueltypeFilterHeading}>Filter models by fuel type</h2>
+                    <h2 className={styles.fueltypeFilterHeading}>Models by fuel type</h2>
                     <div className={styles.fuelTypeBtns}>
                         {props.fuelTypes.map((type: fuelType) => (
                             <button
@@ -122,7 +123,7 @@ export default function ClientFilter(props: ClientFilterProps) {
             {/* ALL MODELS */}
             {filteredModels && filteredModels.length > 0 && (
                 <div className={styles.modelsContainer}>
-                    <h2>Choose model</h2>
+                    <h2 className={styles.modelsHeading}>Models</h2>
 
                     {/* MODEL BUTTONS */}
                     <div className={styles.modelBtnsContainer}>

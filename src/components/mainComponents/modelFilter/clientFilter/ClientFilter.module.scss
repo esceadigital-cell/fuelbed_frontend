@@ -6,6 +6,10 @@
     gap: $gap-medium;
 }
 
+.heading {
+    margin-bottom: $gap-xs;
+}
+
 .searchInput {
     width: 100%;
     padding: 0.2rem 0.5rem;
@@ -101,6 +105,10 @@
     gap: $gap-small;
     border-top: 1px solid rgba($color-dark, 0.3);
     padding-top: $gap-medium;
+
+    .modelsHeading {
+        @include p-styles;
+    }
 }
 
 .modelBtnsContainer {

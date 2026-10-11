@@ -15,11 +15,11 @@ export default function Log(props: LogProps) {
 
     useEffect(() => {
         setCurrentStep(
-            props.log.rotating3d
+            props.log.rotating3d?.length > 0
                 ? "rotation"
-                : props.log.overviewPlacement
+                : props.log.overviewPlacement?.length > 0
                   ? "overview"
-                  : props.log.closeupPlacement
+                  : props.log.closeupPlacement?.length > 0
                     ? "closeup"
                     : "",
         );

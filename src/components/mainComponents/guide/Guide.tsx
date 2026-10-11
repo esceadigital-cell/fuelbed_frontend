@@ -372,7 +372,7 @@ export default function Guide(props: GuideProps) {
                             >
                                 LOG {i + 1}
                                 {/* LOG PREVIEW POPUP */}
-                                {logPreviewIndex === i && log.rotating3d[0] && (
+                                {logPreviewIndex === i && (
                                     <div
                                         className={styles.previewWrapper}
                                         ref={previewRef}
@@ -382,7 +382,13 @@ export default function Guide(props: GuideProps) {
                                             } as React.CSSProperties
                                         }
                                     >
-                                        <VideoComponent video={log.rotating3d[0]} noControls />
+                                        {log.rotating3d[0] ? (
+                                            <VideoComponent video={log.rotating3d[0]} noControls />
+                                        ) : (
+                                            <p className={styles.noPreviewMessage}>
+                                                No identification media available for this log
+                                            </p>
+                                        )}
                                     </div>
                                 )}
                             </button>
