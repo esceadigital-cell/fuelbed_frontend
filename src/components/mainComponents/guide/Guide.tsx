@@ -344,7 +344,7 @@ export default function Guide(props: GuideProps) {
                             onClick={() => setBurgerMenuIsShown(false)}
                         >
                             <IconComponent
-                                src="/icons/close.png"
+                                src="/icons/close_dark.png"
                                 width={100}
                                 height={100}
                                 alt="Close burger menu"
