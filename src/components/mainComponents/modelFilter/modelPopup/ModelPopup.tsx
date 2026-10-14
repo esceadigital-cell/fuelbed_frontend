@@ -43,84 +43,84 @@ export default function ModelPopup(props: ModelPopupProps) {
                     </div>
 
                     {/* VERSIONS */}
-                    <div className={styles.versionWrapper}>
-                        <h4>
-                            {model.versions && model.versions.length > 0
-                                ? "Version"
-                                : "No versions of this model added yet"}
-                        </h4>
+                    {!model.versions?.length && <h4>No versions of this model added yet</h4>}
 
-                        {/* SELECT IF MULTIPLE VERSIONS || P-TAG IF ONLY ONE VERSION */}
-                        {model.versions &&
-                            model.versions.length > 0 &&
-                            (model.versions.length > 1 ? (
-                                <select
-                                    className={styles.versionSelect}
-                                    value={selectedVersion.title ?? ""}
-                                    onChange={(e) => {
-                                        handleVersionChange(e.target.value);
-                                    }}
-                                >
-                                    <option value="" disabled>
-                                        Select version
+                    {model.versions && model.versions.length > 1 && (
+                        <div className={styles.versionWrapper}>
+                            <h4>Version</h4>
+
+                            {/* SELECT */}
+                            <select
+                                className={styles.versionSelect}
+                                value={selectedVersion.title ?? ""}
+                                onChange={(e) => {
+                                    handleVersionChange(e.target.value);
+                                }}
+                            >
+                                <option value="" disabled>
+                                    Select version
+                                </option>
+                                {props.model.versions.map((version) => (
+                                    <option key={version.id} value={version.title}>
+                                        {version.title}
                                     </option>
-                                    {props.model.versions.map((version) => (
-                                        <option key={version.id} value={version.title}>
-                                            {version.title}
-                                        </option>
-                                    ))}
-                                </select>
-                            ) : (
-                                <p className={styles.singleVersion}>{selectedVersion.title}</p>
-                            ))}
-                    </div>
+                                ))}
+                            </select>
+                        </div>
+                    )}
 
                     {/* FUEL BEDS */}
-                    {selectedVersion?.fuelbeds && selectedVersion.fuelbeds.length > 0 ? (
-                        <div className={styles.fuelbedsSection}>
-                            <h4>Fuelbeds</h4>
+                    {selectedVersion &&
+                        (selectedVersion.fuelbeds?.length ? (
+                            <div className={styles.fuelbedsSection}>
+                                <h4>Fuelbeds</h4>
 
-                            <div className={styles.fuelbedsWrapper}>
-                                {selectedVersion.fuelbeds?.map((fuelbed) =>
-                                    fuelbed.guide ? (
-                                        <Link
-                                            key={fuelbed.id}
-                                            href={{
-                                                pathname: `/guide/${fuelbed.guide.documentId}`,
-                                                query: {
-                                                    modelTitle: model.title,
-                                                    versionTitle: selectedVersion.title,
-                                                    fuelbed: fuelbed.fuelbed.title,
-                                                },
-                                            }}
-                                            className={styles.fuelbedLink}
-                                        >
-                                            <div className={styles.fuelbedBtn}>
-                                                <h4 className={styles.fuelbedHeading}>
-                                                    {fuelbed.fuelbed?.title}
-                                                </h4>
-                                                {fuelbed.fuelbed.image && (
-                                                    <div className={styles.imgWrapper}>
-                                                        <ImageComponent
-                                                            image={fuelbed.fuelbed.image}
-                                                        />
+                                <div className={styles.fuelbedsWrapper}>
+                                    {selectedVersion.fuelbeds.map((fuelbed) =>
+                                        fuelbed.guide ? (
+                                            <Link
+                                                key={fuelbed.id}
+                                                href={{
+                                                    pathname: `/guide/${fuelbed.guide.documentId}`,
+                                                    query: {
+                                                        modelTitle: model.title,
+                                                        versionTitle: selectedVersion.title,
+                                                        fuelbed: fuelbed.fuelbed?.title ?? "",
+                                                    },
+                                                }}
+                                                className={styles.fuelbedLink}
+                                            >
+                                                <div className={styles.fuelbedBtn}>
+                                                    <h4 className={styles.fuelbedHeading}>
+                                                        {fuelbed.fuelbed?.title}
+                                                    </h4>
+                                                    {fuelbed.fuelbed?.image && (
+                                                        <div className={styles.imgWrapper}>
+                                                            <ImageComponent
+                                                                image={fuelbed.fuelbed.image}
+                                                            />
+                                                        </div>
+                                                    )}
+                                                    <div className={styles.seeGuideBtn}>
+                                                        SEE GUIDE
                                                     </div>
-                                                )}
-                                                <div className={styles.seeGuideBtn}>SEE GUIDE</div>
+                                                </div>
+                                            </Link>
+                                        ) : (
+                                            <div
+                                                key={fuelbed.id}
+                                                className={styles.noGuideAddedBox}
+                                            >
+                                                <h4>{fuelbed.fuelbed?.title}</h4>
+                                                <p>No guide added for this fuelbed yet</p>
                                             </div>
-                                        </Link>
-                                    ) : (
-                                        <div key={fuelbed.id} className={styles.noGuideAddedBox}>
-                                            <h4>{fuelbed.fuelbed?.title}</h4>
-                                            <p>No guide added for this fuelbed yet</p>
-                                        </div>
-                                    ),
-                                )}
+                                        ),
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                    ) : (
-                        <h4>No fuelbeds added to this version yet</h4>
-                    )}
+                        ) : (
+                            <h4>No fuelbeds added to this version yet</h4>
+                        ))}
                 </div>
             </div>
         </div>

@@ -16,6 +16,7 @@ self.addEventListener("install", (event) => {
                     "/icons/download_done_light.png",
                     "/icons/download_light.png",
                     "/icons/close_dark.png",
+                    "/icons/home_light.png",
                     "/icons/arrow_circle_right_orange.png",
                 ]),
             ),

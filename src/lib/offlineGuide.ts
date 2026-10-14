@@ -71,8 +71,20 @@ export async function downloadGuideForOffline(
         await cache.addAll(staticAssets);
 
         // all videos and images
-        const mediaUrls = extractMediaUrls(guide);
-        await Promise.all(mediaUrls.map((url) => cache.add(url)));
+        //const mediaUrls = extractMediaUrls(guide);
+        //await Promise.all(mediaUrls.map((url) => cache.add(url)));
+
+        const mediaUrls = [...new Set(extractMediaUrls(guide))];
+
+        await Promise.all(
+            mediaUrls.map(async (url) => {
+                try {
+                    await cache.add(url);
+                } catch (err) {
+                    throw new Error(`Failed to cache ${url}: ${err}`);
+                }
+            }),
+        );
     } catch (err) {
         // don't leave a half-downloaded guide behind
         await caches.delete(cacheName);
