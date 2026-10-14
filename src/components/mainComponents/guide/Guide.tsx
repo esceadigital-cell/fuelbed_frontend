@@ -264,8 +264,8 @@ export default function Guide(props: GuideProps) {
                             <div className={styles.bgColor}>
                                 <IconComponent
                                     src="/icons/info_circle_light.png"
-                                    width={30}
-                                    height={30}
+                                    width={35}
+                                    height={35}
                                     alt="Info regarding this guide"
                                     unoptimized
                                 />
@@ -305,16 +305,16 @@ export default function Guide(props: GuideProps) {
                                 {isDownloaded ? (
                                     <IconComponent
                                         src="/icons/download_done_light.png"
-                                        width={30}
-                                        height={30}
+                                        width={35}
+                                        height={35}
                                         alt="Undownload guide"
                                         unoptimized
                                     />
                                 ) : (
                                     <IconComponent
                                         src="/icons/download_light.png"
-                                        width={30}
-                                        height={30}
+                                        width={35}
+                                        height={35}
                                         alt="Download guide"
                                         unoptimized
                                     />
@@ -383,8 +383,8 @@ export default function Guide(props: GuideProps) {
                     <IconComponent
                         src="/icons/home_light.png"
                         alt="Go to homepage"
-                        width={30}
-                        height={30}
+                        width={35}
+                        height={35}
                     />
                 </Link>
 

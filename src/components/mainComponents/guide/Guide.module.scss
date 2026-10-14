@@ -28,6 +28,7 @@
     max-width: calc($page-max-width - ($padding-tablet * 2));
     margin: 0 auto;
     height: $adminBarHeight;
+    box-shadow: 0 5px 5px rgba($color-dark, 0.2);
     //margin-top: 1rem;
     //margin-bottom: 3rem;
 
@@ -163,7 +164,7 @@
         gap: $gap-medium;
         z-index: 0;
         width: max-content;
-        max-width: calc(100vw - 10rem);
+        max-width: calc(100vw - 11rem);
         padding: 2rem;
         clip-path: inset(100% 100% 0 0);
         pointer-events: none; // can't be clicked/focused while hidden
@@ -239,7 +240,7 @@
     justify-self: end;
     background-color: transparent;
     border: none;
-    max-width: 3.5rem;
+    //max-width: 3.5rem;
     aspect-ratio: 1/1;
 }
 
