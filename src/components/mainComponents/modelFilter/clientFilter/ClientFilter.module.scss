@@ -87,6 +87,7 @@
 
         .fuelTypeBtn {
             @include btnStyles;
+            background-color: transparent;
             border: 1px solid $color-orange;
             color: $color-orange;
             border-radius: $border-radius;

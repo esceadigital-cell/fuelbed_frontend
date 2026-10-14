@@ -14,6 +14,7 @@ import {
 import Checklist from "../checklist/Checklist";
 import GuideTitles from "./guideTitles/GuideTitles";
 import Spinner from "@/components/nestedComponents/spinner/Spinner";
+import Link from "next/link";
 
 interface GuideProps {
     guide: guide;
@@ -190,14 +191,79 @@ export default function Guide(props: GuideProps) {
     useEffect(() => clearHoldTimer, []);
 
     return (
-        <section className={styles.wrapper}>
+        <section
+            className={`${styles.wrapper} ${
+                currentLogIndex === logs.length - 1 && props.guide.end_of_installation_checklist
+                    ? styles.checklistBtnIsVisible
+                    : undefined
+            }`}
+        >
+            {/* SPECIFIC LOG */}
+            <div className={styles.logZIndex}>
+                <Log log={currentLog} logIndex={currentLogIndex} />
+            </div>
+
+            {/* LOG NAV BUTTONS */}
+            <div className={styles.logsNavBar}>
+                <div className={styles.changeLogBtns}>
+                    <button
+                        className={`${styles.changeLogBtn} ${styles.previousLogBtn}`}
+                        onClick={goToPrevious}
+                        disabled={currentLogIndex === 0}
+                    >
+                        <IconComponent
+                            src="/icons/arrow_circle_right_dark.png"
+                            alt="Previous log"
+                            width={30}
+                            height={30}
+                        />
+                    </button>
+                    <h1 className={styles.logCount}>
+                        LOG <span className={styles.currentLogCount}>{currentLogIndex + 1}</span> /{" "}
+                        {logs.length}
+                    </h1>
+                    <button
+                        className={`${styles.changeLogBtn} ${styles.nextLogBtn}`}
+                        onClick={goToNext}
+                        disabled={currentLogIndex === logs.length - 1}
+                    >
+                        <IconComponent
+                            src="/icons/arrow_circle_right_dark.png"
+                            alt="Previous log"
+                            width={30}
+                            height={30}
+                        />
+                    </button>
+                </div>
+                {currentLogIndex === logs.length - 1 &&
+                    props.guide.end_of_installation_checklist && (
+                        <button
+                            className={styles.checklistBtn}
+                            onClick={() => setChecklistIsShown(true)}
+                        >
+                            ✓ GO TO INSTALLATION CHECKLIST
+                        </button>
+                    )}
+            </div>
+
+            {/* CHECKLIST */}
+            {checklistIsShown && props.guide.end_of_installation_checklist?.checkpoints && (
+                <div className={styles.checklistWrapper}>
+                    <Checklist
+                        checklist={props.guide.end_of_installation_checklist.checkpoints}
+                        closeChecklist={() => setChecklistIsShown(false)}
+                    />
+                </div>
+            )}
+
+            {/* BOTTOM HEADER */}
             <div className={styles.guideHeader}>
                 <div className={styles.leftIconsWrapper}>
                     <div className={styles.guideInfoTextWrapper}>
                         <div className={styles.infoIconWrapper} onClick={toggleInfoPopup}>
                             <div className={styles.bgColor}>
                                 <IconComponent
-                                    src="/icons/info_circle_dark.png"
+                                    src="/icons/info_circle_light.png"
                                     width={30}
                                     height={30}
                                     alt="Info regarding this guide"
@@ -238,7 +304,7 @@ export default function Guide(props: GuideProps) {
                             >
                                 {isDownloaded ? (
                                     <IconComponent
-                                        src="/icons/download_done.png"
+                                        src="/icons/download_done_light.png"
                                         width={30}
                                         height={30}
                                         alt="Undownload guide"
@@ -246,7 +312,7 @@ export default function Guide(props: GuideProps) {
                                     />
                                 ) : (
                                     <IconComponent
-                                        src="/icons/download.png"
+                                        src="/icons/download_light.png"
                                         width={30}
                                         height={30}
                                         alt="Download guide"
@@ -313,11 +379,14 @@ export default function Guide(props: GuideProps) {
                     </div>
                 </div>
 
-                {/* LOG COUNT */}
-                <h1 className={styles.logCount}>
-                    LOG <span className={styles.currentLogCount}>{currentLogIndex + 1}</span> /{" "}
-                    {logs.length}
-                </h1>
+                <Link className={styles.homeIconLink} href={"/"}>
+                    <IconComponent
+                        src="/icons/home_light.png"
+                        alt="Go to homepage"
+                        width={30}
+                        height={30}
+                    />
+                </Link>
 
                 {/* BURGER MENU */}
                 {/* ICON */}
@@ -326,7 +395,7 @@ export default function Guide(props: GuideProps) {
                     onClick={() => setBurgerMenuIsShown(true)}
                 >
                     <IconComponent
-                        src="/icons/burger_menu.png"
+                        src="/icons/log_search_light.png"
                         width={35}
                         height={35}
                         alt="Open burger menu"
@@ -404,47 +473,6 @@ export default function Guide(props: GuideProps) {
                     ></div>
                 )}
             </div>
-
-            <div className={styles.logsNavBar}>
-                <button
-                    className={styles.changeLogBtn}
-                    onClick={goToPrevious}
-                    disabled={currentLogIndex === 0}
-                >
-                    PREVIOUS LOG
-                </button>
-                <button
-                    className={`${styles.changeLogBtn} ${styles.nextLogBtn}`}
-                    onClick={goToNext}
-                    disabled={currentLogIndex === logs.length - 1}
-                >
-                    NEXT LOG
-                </button>
-                {currentLogIndex === logs.length - 1 &&
-                    props.guide.end_of_installation_checklist && (
-                        <button
-                            className={styles.checklistBtn}
-                            onClick={() => setChecklistIsShown(true)}
-                        >
-                            ✓ CHECKLIST
-                        </button>
-                    )}
-            </div>
-
-            {/* SPECIFIC LOG */}
-            <div className={styles.logZIndex}>
-                <Log log={currentLog} logIndex={currentLogIndex} />
-            </div>
-
-            {/* CHECKLIST */}
-            {checklistIsShown && props.guide.end_of_installation_checklist?.checkpoints && (
-                <div className={styles.checklistWrapper}>
-                    <Checklist
-                        checklist={props.guide.end_of_installation_checklist.checkpoints}
-                        closeChecklist={() => setChecklistIsShown(false)}
-                    />
-                </div>
-            )}
         </section>
     );
 }

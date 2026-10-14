@@ -10,6 +10,7 @@ $color-dark-green: rgb(69, 207, 69);
 // lengths
 $page-max-width: 600px;
 $headerHeight: 30px;
+$adminBarHeight: 50px;
 
 // Gaps
 $gap-xs: 0.5rem;
@@ -58,6 +59,7 @@ $border-radius: 0.4rem;
 }
 
 @mixin btnStyles {
+    //background-color: $color-grey;
     background-color: transparent;
     border: 1px solid $color-dark;
     border-radius: $border-radius;
