@@ -36,31 +36,6 @@ function extractMediaUrls(guide: guide): string[] {
     return urls;
 }
 
-/*export async function downloadGuideForOffline(
-    guide: guide,
-    modelTitle: string,
-    versionTitle: string,
-    fuelbedTitle: string,
-    //strapiUrl: string,
-) {
-    const cacheName = `guide-${guide.documentId}`;
-    const cache = await caches.open(cacheName);
-
-    // capture the exact URL currently open, including ?modelTitle=...&versionTitle=...
-    const currentUrl = window.location.pathname + window.location.search;
-    await cache.add(currentUrl);
-
-    const mediaUrls = extractMediaUrls(guide);
-    await Promise.all(mediaUrls.map((url) => cache.add(url)));
-
-    const downloaded = JSON.parse(localStorage.getItem("downloadedGuides") ?? "[]");
-    const entry = { id: guide.documentId, modelTitle, versionTitle, fuelbedTitle };
-    localStorage.setItem(
-        "downloadedGuides",
-        JSON.stringify([...downloaded.filter((g: { id: string }) => g.id !== entry.id), entry]),
-    );
-}*/
-
 export async function downloadGuideForOffline(
     guide: guide,
     modelTitle: string,

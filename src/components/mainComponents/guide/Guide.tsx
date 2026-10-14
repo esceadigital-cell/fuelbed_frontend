@@ -339,7 +339,12 @@ export default function Guide(props: GuideProps) {
                                 </p>
                             )}
 
-                            {isDownloading && <Spinner />}
+                            {isDownloading && (
+                                <div className={styles.spinnerWrapper}>
+                                    <p>This can take awhile...</p>
+                                    <Spinner />
+                                </div>
+                            )}
 
                             {isDownloaded ? (
                                 <div className={styles.downloadBtnsContainer}>
@@ -452,7 +457,15 @@ export default function Guide(props: GuideProps) {
                                         }
                                     >
                                         {log.rotating3d[0] ? (
-                                            <VideoComponent video={log.rotating3d[0]} noControls />
+                                            <>
+                                                <VideoComponent
+                                                    video={log.rotating3d[0]}
+                                                    noControls
+                                                />
+                                                <div className={styles.previewSpinner}>
+                                                    <Spinner />
+                                                </div>
+                                            </>
                                         ) : (
                                             <p className={styles.noPreviewMessage}>
                                                 No identification media available for this log

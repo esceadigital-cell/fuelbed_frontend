@@ -135,7 +135,7 @@
         position: relative;
         z-index: 5;
 
-        transition: z-index 0s linear 0.2s;
+        transition: z-index 0s linear 0.3s;
 
         &.increseZIndex {
             z-index: 11;
@@ -171,7 +171,7 @@
 
         will-change: clip-path;
         transition:
-            clip-path 0.3s ease,
+            clip-path 0.3s,
             z-index 0s linear 0.3s;
 
         @media screen and (min-width: $page-max-width) {
@@ -183,7 +183,7 @@
             pointer-events: auto;
             z-index: 10;
             transition:
-                clip-path 0.3s ease,
+                clip-path 0.3s,
                 z-index 0s;
         }
 
@@ -197,6 +197,14 @@
             @include btnStyles;
             background-color: $color-light;
             color: $color-dark;
+        }
+
+        .spinnerWrapper {
+            display: flex;
+            flex-direction: column;
+            //justify-content: center;
+            align-items: center;
+            gap: $gap-medium;
         }
     }
 
@@ -348,6 +356,14 @@
             justify-content: center;
             align-items: center;
             background-color: black;
+
+            .previewSpinner {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: -1;
+            }
 
             .noPreviewMessage {
                 color: $color-light;
