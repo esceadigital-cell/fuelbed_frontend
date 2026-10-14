@@ -214,8 +214,8 @@ export default function Guide(props: GuideProps) {
                         <IconComponent
                             src="/icons/arrow_circle_right_dark.png"
                             alt="Previous log"
-                            width={30}
-                            height={30}
+                            width={40}
+                            height={40}
                         />
                     </button>
                     <h1 className={styles.logCount}>
@@ -230,8 +230,8 @@ export default function Guide(props: GuideProps) {
                         <IconComponent
                             src="/icons/arrow_circle_right_dark.png"
                             alt="Previous log"
-                            width={30}
-                            height={30}
+                            width={40}
+                            height={40}
                         />
                     </button>
                 </div>

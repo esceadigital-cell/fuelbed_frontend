@@ -5,19 +5,19 @@
     flex-direction: column;
     gap: $gap-small;
     //height: calc(100vh - ($moduleTopBottomPadding * 2) - $headerHeight);
-    padding-bottom: calc(($adminBarHeight * 2) + 3rem);
+    padding-bottom: calc(($adminBarHeight * 2) + 4rem);
 
     &.checklistBtnIsVisible {
-        padding-bottom: calc(($adminBarHeight * 2) + 7rem);
+        padding-bottom: calc(($adminBarHeight * 2) + 9rem);
     }
 }
 
 .guideHeader {
     position: fixed;
-    bottom: 0;
-    left: 0.3rem;
-    right: 0.3rem;
-    border-radius: $border-radius $border-radius 0 0;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    border-radius: $border-radius;
     background-color: $color-dark;
     color: $color-light;
     display: grid;
@@ -69,7 +69,7 @@
             flex-direction: column;
             gap: $gap-medium;
             z-index: 1;
-            width: calc(100vw - 6rem);
+            width: calc(100vw - 8rem);
             padding: 2rem;
             clip-path: inset(100% 100% 0 0);
             transition: clip-path 0.3s ease;
@@ -245,7 +245,8 @@
 
 .burgerMenu {
     position: fixed;
-    top: calc($headerHeight + $moduleTopBottomPadding);
+    //top: calc($headerHeight + $moduleTopBottomPadding);
+    top: 0.3rem;
     bottom: 0.3rem;
     right: 0.3rem;
     width: calc(100vw - 4rem);
@@ -257,7 +258,7 @@
     padding: 0 $padding-mobile 1rem 1rem;
     background-color: $color-light;
     //color: $color-light;
-    border-radius: $border-radius 0 0 0;
+    border-radius: $border-radius 0 0 $border-radius;
     display: flex;
     flex-direction: column;
     //gap: $gap-small;
@@ -368,7 +369,7 @@
 
 .logsNavBar {
     position: fixed;
-    bottom: calc($adminBarHeight + 1rem);
+    bottom: calc($adminBarHeight + 2rem);
     left: $padding-mobile;
     right: $padding-mobile;
     max-width: calc($page-max-width - ($padding-tablet * 2));
