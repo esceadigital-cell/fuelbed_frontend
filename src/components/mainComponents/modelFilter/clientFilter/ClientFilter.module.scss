@@ -50,12 +50,12 @@
         background-color: $color-grey;
         border: 1px solid rgba($color-dark, 0.5);
         padding: 1rem;
-        padding-bottom: 2rem;
+        //padding-bottom: 2rem;
         //border-radius: $border-radius;
         list-style: none;
         position: absolute;
-        top: 0;
-        transform: translateY(calc(100% - 16px));
+        top: 100%;
+        //transform: translateY(calc(100% - 16px));
         width: 100%;
         max-height: 40rem;
         overflow-y: auto;
@@ -65,7 +65,7 @@
         @include p-styles;
 
         a {
-            text-decoration: underline;
+            text-decoration: none;
         }
     }
 }
