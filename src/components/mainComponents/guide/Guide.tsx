@@ -216,6 +216,7 @@ export default function Guide(props: GuideProps) {
                             alt="Previous log"
                             width={40}
                             height={40}
+                            unoptimized
                         />
                     </button>
                     <h1 className={styles.logCount}>
@@ -232,6 +233,7 @@ export default function Guide(props: GuideProps) {
                             alt="Previous log"
                             width={40}
                             height={40}
+                            unoptimized
                         />
                     </button>
                 </div>
@@ -390,6 +392,7 @@ export default function Guide(props: GuideProps) {
                         alt="Go to homepage"
                         width={35}
                         height={35}
+                        unoptimized
                     />
                 </Link>
 
@@ -397,7 +400,7 @@ export default function Guide(props: GuideProps) {
                 {/* ICON */}
                 <button
                     className={styles.burgerIconWrapper}
-                    onClick={() => setBurgerMenuIsShown(true)}
+                    onClick={() => setBurgerMenuIsShown((prev) => !prev)}
                 >
                     <IconComponent
                         src="/icons/log_search_light.png"
@@ -413,19 +416,22 @@ export default function Guide(props: GuideProps) {
                     className={`${styles.burgerMenu} ${burgerMenuIsShown ? styles.isOpen : undefined}`}
                 >
                     <div className={styles.stickyContent}>
-                        <button
-                            className={styles.closeIconBtn}
-                            onClick={() => setBurgerMenuIsShown(false)}
-                        >
-                            <IconComponent
-                                src="/icons/close_dark.png"
-                                width={100}
-                                height={100}
-                                alt="Close burger menu"
-                                unoptimized
-                            />
-                        </button>
-                        <h2 className={styles.burgerMenuHeading}>Jump to specific log</h2>
+                        <div className={styles.burgerMenuTopRow}>
+                            <h2 className={styles.burgerMenuHeading}>JUMP TO SPECIFIC LOG</h2>
+                            <button
+                                className={styles.closeIconBtn}
+                                onClick={() => setBurgerMenuIsShown(false)}
+                            >
+                                <IconComponent
+                                    src="/icons/close_dark.png"
+                                    width={35}
+                                    height={35}
+                                    alt="Close burger menu"
+                                    unoptimized
+                                />
+                            </button>
+                        </div>
+
                         <ul className={styles.menuInstructions}>
                             <li>Hold down a button to preview the log</li>
                             <li>Tap a button to go to the log</li>

@@ -76,7 +76,7 @@
             transition: clip-path 0.3s ease;
             pointer-events: none; // can't be clicked/focused while hidden
             overflow-y: auto;
-            max-height: calc(100dvh - 8rem);
+            max-height: calc(100dvh - 10rem);
             will-change: clip-path;
 
             &.isVirgin {
@@ -250,13 +250,15 @@
     border: none;
     //max-width: 3.5rem;
     aspect-ratio: 1/1;
+    z-index: 100;
 }
 
 .burgerMenu {
     position: fixed;
     //top: calc($headerHeight + $moduleTopBottomPadding);
     top: 0.3rem;
-    bottom: 0.3rem;
+    //bottom: 0.3rem;
+    bottom: $adminBarHeight;
     right: 0.3rem;
     width: calc(100vw - 4rem);
     max-width: 50rem;
@@ -298,17 +300,25 @@
         color: $color-dark;
     }
 
+    .burgerMenuTopRow {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
     .closeIconBtn {
         max-width: fit-content;
         align-self: flex-end;
         background-color: transparent;
         border: none;
-        width: 3.5rem;
-        height: 3.5rem;
+        display: flex;
+        border: 1px solid $color-grey;
+        margin-right: 1rem;
+        align-self: center;
     }
 
     .burgerMenuHeading {
-        @include h3-styles;
+        @include h2-styles;
         font-weight: normal;
     }
 

@@ -46,9 +46,58 @@ export default function ClientFilter(props: ClientFilterProps) {
 
     return (
         <section className={styles.wrapper}>
-            {/* SEARCH */}
             <div>
+                {/* DOWNLOADED GUIDES */}
+                {downloadedGuides.length > 0 && (
+                    <div className={styles.downloadedGuidesWrapper}>
+                        <div
+                            className={styles.downloadedGuidesDropDownTopBar}
+                            onClick={() => setDownloadedGuidesAreShown((prev) => !prev)}
+                        >
+                            <h2 className={styles.downloadedGuidesHeading}>Downloaded guides</h2>
+                            <div
+                                className={`${styles.arrowIconWrapper} ${downloadedGuidesAreShown ? styles.isOpen : undefined}`}
+                            >
+                                <IconComponent
+                                    src="/icons/arrow_drop_down.png"
+                                    alt="See downloaded guides"
+                                    width={30}
+                                    height={30}
+                                />
+                            </div>
+                        </div>
+                        {downloadedGuidesAreShown && (
+                            <ul className={styles.downloadedGuidesList}>
+                                {downloadedGuides.map((g) => (
+                                    <li key={g.id}>
+                                        <Link
+                                            href={{
+                                                pathname: `/guide/${g.id}`,
+                                                query: {
+                                                    modelTitle: g.modelTitle,
+                                                    ...(g.versionTitle && {
+                                                        versionTitle: g.versionTitle,
+                                                    }),
+                                                    ...(g.fuelbedTitle && {
+                                                        fuelbed: g.fuelbedTitle,
+                                                    }),
+                                                },
+                                            }}
+                                        >
+                                            {[g.modelTitle, g.versionTitle, g.fuelbedTitle]
+                                                .filter(Boolean)
+                                                .join(" - ")}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+                )}
+
                 <h1 className={styles.heading}>Choose model</h1>
+
+                {/* SEARCH */}
                 <input
                     className={styles.searchInput}
                     type="search"
@@ -59,52 +108,6 @@ export default function ClientFilter(props: ClientFilterProps) {
                     }}
                 />
             </div>
-
-            {/* DOWNLOADED GUIDES */}
-            {downloadedGuides.length > 0 && (
-                <div className={styles.downloadedGuidesWrapper}>
-                    <div
-                        className={styles.downloadedGuidesDropDownTopBar}
-                        onClick={() => setDownloadedGuidesAreShown((prev) => !prev)}
-                    >
-                        <h2 className={styles.downloadedGuidesHeading}>Downloaded guides</h2>
-                        <div
-                            className={`${styles.arrowIconWrapper} ${downloadedGuidesAreShown ? styles.isOpen : undefined}`}
-                        >
-                            <IconComponent
-                                src="/icons/arrow_drop_down.png"
-                                alt="See downloaded guides"
-                                width={30}
-                                height={30}
-                            />
-                        </div>
-                    </div>
-                    {downloadedGuidesAreShown && (
-                        <ul className={styles.downloadedGuidesList}>
-                            {downloadedGuides.map((g) => (
-                                <li key={g.id}>
-                                    <Link
-                                        href={{
-                                            pathname: `/guide/${g.id}`,
-                                            query: {
-                                                modelTitle: g.modelTitle,
-                                                ...(g.versionTitle && {
-                                                    versionTitle: g.versionTitle,
-                                                }),
-                                                ...(g.fuelbedTitle && { fuelbed: g.fuelbedTitle }),
-                                            },
-                                        }}
-                                    >
-                                        {[g.modelTitle, g.versionTitle, g.fuelbedTitle]
-                                            .filter(Boolean)
-                                            .join(" - ")}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
-            )}
 
             {/* FUEL TYPES FILTER BUTTONS */}
             {props.fuelTypes && props.fuelTypes.length > 0 && (

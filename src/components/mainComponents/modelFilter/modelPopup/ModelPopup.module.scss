@@ -158,21 +158,14 @@
             }
 
             .seeGuideBtn {
-                //@include btnStyles;
                 @include btnStyles;
-                //@include p-styles;
-                padding: 0.1rem 0rem;
-                //align-self: end;
-                //background-color: $color-light;
-                //border: none;
-                //text-align: center;
+                padding: 0.5rem 0rem;
             }
 
             .noGuideAddedBox {
                 display: flex;
                 flex-direction: column;
                 gap: $gap-small;
-                //height: 100%;
                 flex: 1;
                 background-color: rgba($color-dark, 0.8);
                 color: $color-light;
