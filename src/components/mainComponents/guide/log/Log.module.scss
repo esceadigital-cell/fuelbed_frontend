@@ -57,6 +57,43 @@
         }
     }
 
+    .lineIndicatorWrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+        container-type: inline-size; // lets children measure the grid's width with cqw
+        isolation: isolate; // keeps the lines' negative z-index inside this element
+
+        .dot {
+            position: relative;
+            width: 1.5rem;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            background-color: $color-grey;
+            justify-self: center;
+
+            &.activeDot {
+                background-color: $color-orange;
+            }
+        }
+
+        // every dot except the first draws a line back to the previous dot
+        .dot + .dot::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            // start a dot radius plus a gap away from this dot's centre
+            right: calc(50% + 0.75rem + 0.4rem);
+            // one column, minus a dot radius and a gap at each end
+            width: calc(100cqw / 3 - 1.5rem - 0.8rem);
+            height: 0.3rem;
+            transform: translateY(-50%);
+            border-radius: $border-radius;
+            background-color: $color-grey;
+            z-index: -1;
+        }
+    }
+
     .logTextWrapper {
         padding: 0 1rem;
         //background-color: $color-grey;

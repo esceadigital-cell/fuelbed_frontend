@@ -80,7 +80,7 @@
             will-change: clip-path;
 
             &.isVirgin {
-                height: calc(100dvh - 8rem);
+                height: calc(100dvh - 12rem);
                 justify-content: center;
             }
 
@@ -294,8 +294,9 @@
         top: 0;
         background-color: $color-light;
         z-index: 1;
-        padding-top: 0.5rem;
+        padding-top: 1rem;
         padding-bottom: 1rem;
+        padding-left: 1rem;
         border-bottom: 1px solid $color-grey;
         color: $color-dark;
     }

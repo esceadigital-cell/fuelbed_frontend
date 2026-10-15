@@ -34,6 +34,12 @@ export default function Log(props: LogProps) {
                 ? props.log.closeupPlacement
                 : null;
 
+    const hasRotationMedia = props.log.rotating3d && props.log.rotating3d.length > 0;
+    const hasOverviewMedia = props.log.overviewPlacement && props.log.overviewPlacement.length > 0;
+    const hasCloseupMedia = props.log.closeupPlacement && props.log.closeupPlacement.length > 0;
+
+    const stepCount = Number(hasRotationMedia) + Number(hasOverviewMedia) + Number(hasCloseupMedia);
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.allMediaWrapper}>
@@ -68,6 +74,36 @@ export default function Log(props: LogProps) {
                     )}
                 </div>
             </div>
+
+            {/* INDICATOR LINES AND DOTS */}
+            {stepCount > 1 && (
+                <div className={styles.lineIndicatorWrapper}>
+                    {hasRotationMedia && (
+                        <div
+                            className={`${styles.dot} ${currentStep === "rotation" ? styles.activeDot : ""}`}
+                            onClick={() => setCurrentStep("rotation")}
+                        ></div>
+                    )}
+
+                    {hasOverviewMedia && (
+                        <>
+                            <div
+                                className={`${styles.dot} ${currentStep === "overview" ? styles.activeDot : ""}`}
+                                onClick={() => setCurrentStep("overview")}
+                            ></div>
+                        </>
+                    )}
+
+                    {hasCloseupMedia && (
+                        <>
+                            <div
+                                className={`${styles.dot} ${currentStep === "closeup" ? styles.activeDot : ""}`}
+                                onClick={() => setCurrentStep("closeup")}
+                            ></div>
+                        </>
+                    )}
+                </div>
+            )}
 
             {props.log.logText && (
                 <div className={styles.logTextWrapper}>
