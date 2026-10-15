@@ -84,7 +84,9 @@ export default function ModelPopup(props: ModelPopupProps) {
                                                     pathname: `/guide/${fuelbed.guide.documentId}`,
                                                     query: {
                                                         modelTitle: model.title,
-                                                        versionTitle: selectedVersion.title,
+                                                        ...(model.versions.length > 1 && {
+                                                            versionTitle: selectedVersion.title,
+                                                        }),
                                                         fuelbed: fuelbed.fuelbed?.title ?? "",
                                                     },
                                                 }}

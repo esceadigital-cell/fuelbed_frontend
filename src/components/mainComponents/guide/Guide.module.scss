@@ -5,26 +5,26 @@
     flex-direction: column;
     gap: $gap-small;
     //height: calc(100vh - ($moduleTopBottomPadding * 2) - $headerHeight);
-    padding-bottom: calc(($adminBarHeight * 2) + 4rem);
+    padding-bottom: calc(($adminBarHeight * 2) + 2rem);
 
     &.checklistBtnIsVisible {
-        padding-bottom: calc(($adminBarHeight * 2) + 9rem);
+        padding-bottom: calc(($adminBarHeight * 2) + 7rem);
     }
 }
 
 .guideHeader {
     position: fixed;
-    bottom: 1rem;
-    left: 1rem;
-    right: 1rem;
-    border-radius: $border-radius;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    //border-radius: $border-radius;
     background-color: $color-dark;
     color: $color-light;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-    align-items: center;
+    align-items: start;
     border-top: 1px solid $color-grey;
-    padding: 0.5rem 1rem;
+    padding: 1rem;
     max-width: calc($page-max-width - ($padding-tablet * 2));
     margin: 0 auto;
     height: $adminBarHeight;
@@ -70,7 +70,7 @@
             flex-direction: column;
             gap: $gap-medium;
             z-index: 1;
-            width: calc(100vw - 8rem);
+            width: calc(100vw - 6.5rem);
             padding: 2rem;
             clip-path: inset(100% 100% 0 0);
             transition: clip-path 0.3s ease;
@@ -387,7 +387,7 @@
 
 .logsNavBar {
     position: fixed;
-    bottom: calc($adminBarHeight + 2rem);
+    bottom: calc($adminBarHeight + 1rem);
     left: $padding-mobile;
     right: $padding-mobile;
     max-width: calc($page-max-width - ($padding-tablet * 2));

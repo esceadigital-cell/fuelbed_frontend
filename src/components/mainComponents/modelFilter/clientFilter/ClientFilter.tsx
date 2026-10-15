@@ -88,12 +88,16 @@ export default function ClientFilter(props: ClientFilterProps) {
                                             pathname: `/guide/${g.id}`,
                                             query: {
                                                 modelTitle: g.modelTitle,
-                                                versionTitle: g.versionTitle,
-                                                fuelbed: g.fuelbedTitle,
+                                                ...(g.versionTitle && {
+                                                    versionTitle: g.versionTitle,
+                                                }),
+                                                ...(g.fuelbedTitle && { fuelbed: g.fuelbedTitle }),
                                             },
                                         }}
                                     >
-                                        {g.modelTitle} - {g.versionTitle} - {g.fuelbedTitle}
+                                        {[g.modelTitle, g.versionTitle, g.fuelbedTitle]
+                                            .filter(Boolean)
+                                            .join(" - ")}
                                     </Link>
                                 </li>
                             ))}
