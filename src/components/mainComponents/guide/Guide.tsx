@@ -463,7 +463,7 @@ export default function Guide(props: GuideProps) {
                                                     noControls
                                                 />
                                                 <div className={styles.previewSpinner}>
-                                                    <Spinner />
+                                                    <Spinner isGrey />
                                                 </div>
                                             </>
                                         ) : (
