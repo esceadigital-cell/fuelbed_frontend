@@ -46,56 +46,56 @@ export default function ClientFilter(props: ClientFilterProps) {
 
     return (
         <section className={styles.wrapper}>
-            <div>
-                {/* DOWNLOADED GUIDES */}
-                {downloadedGuides.length > 0 && (
-                    <div className={styles.downloadedGuidesWrapper}>
+            {/* DOWNLOADED GUIDES */}
+            {downloadedGuides.length > 0 && (
+                <div className={styles.downloadedGuidesWrapper}>
+                    <div
+                        className={styles.downloadedGuidesDropDownTopBar}
+                        onClick={() => setDownloadedGuidesAreShown((prev) => !prev)}
+                    >
+                        <h2 className={styles.downloadedGuidesHeading}>DOWNLOADED GUIDES</h2>
                         <div
-                            className={styles.downloadedGuidesDropDownTopBar}
-                            onClick={() => setDownloadedGuidesAreShown((prev) => !prev)}
+                            className={`${styles.arrowIconWrapper} ${downloadedGuidesAreShown ? styles.isOpen : undefined}`}
                         >
-                            <h2 className={styles.downloadedGuidesHeading}>Downloaded guides</h2>
-                            <div
-                                className={`${styles.arrowIconWrapper} ${downloadedGuidesAreShown ? styles.isOpen : undefined}`}
-                            >
-                                <IconComponent
-                                    src="/icons/arrow_drop_down.png"
-                                    alt="See downloaded guides"
-                                    width={30}
-                                    height={30}
-                                />
-                            </div>
+                            <IconComponent
+                                src="/icons/arrow_drop_down.png"
+                                alt="See downloaded guides"
+                                width={30}
+                                height={30}
+                            />
                         </div>
-                        {downloadedGuidesAreShown && (
-                            <ul className={styles.downloadedGuidesList}>
-                                {downloadedGuides.map((g) => (
-                                    <li key={g.id}>
-                                        <Link
-                                            href={{
-                                                pathname: `/guide/${g.id}`,
-                                                query: {
-                                                    modelTitle: g.modelTitle,
-                                                    ...(g.versionTitle && {
-                                                        versionTitle: g.versionTitle,
-                                                    }),
-                                                    ...(g.fuelbedTitle && {
-                                                        fuelbed: g.fuelbedTitle,
-                                                    }),
-                                                },
-                                            }}
-                                        >
-                                            {[g.modelTitle, g.versionTitle, g.fuelbedTitle]
-                                                .filter(Boolean)
-                                                .join(" - ")}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
                     </div>
-                )}
+                    {downloadedGuidesAreShown && (
+                        <ul className={styles.downloadedGuidesList}>
+                            {downloadedGuides.map((g) => (
+                                <li key={g.id}>
+                                    <Link
+                                        href={{
+                                            pathname: `/guide/${g.id}`,
+                                            query: {
+                                                modelTitle: g.modelTitle,
+                                                ...(g.versionTitle && {
+                                                    versionTitle: g.versionTitle,
+                                                }),
+                                                ...(g.fuelbedTitle && {
+                                                    fuelbed: g.fuelbedTitle,
+                                                }),
+                                            },
+                                        }}
+                                    >
+                                        {[g.modelTitle, g.versionTitle, g.fuelbedTitle]
+                                            .filter(Boolean)
+                                            .join(" - ")}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+            )}
 
-                <h1 className={styles.heading}>Choose model</h1>
+            <div>
+                <h1 className={styles.heading}>CHOOSE MODEL</h1>
 
                 {/* SEARCH */}
                 <input
@@ -112,7 +112,7 @@ export default function ClientFilter(props: ClientFilterProps) {
             {/* FUEL TYPES FILTER BUTTONS */}
             {props.fuelTypes && props.fuelTypes.length > 0 && (
                 <div className={styles.fuelTypeFilterButtonsWrapper}>
-                    <h2 className={styles.fueltypeFilterHeading}>Models by fuel type</h2>
+                    <h2 className={styles.fueltypeFilterHeading}>FILTER MODELS BY FUEL TYPE</h2>
                     <div className={styles.fuelTypeBtns}>
                         {props.fuelTypes.map((type: fuelType) => (
                             <button
@@ -120,7 +120,7 @@ export default function ClientFilter(props: ClientFilterProps) {
                                 className={`${styles.fuelTypeBtn} ${selectedFuelType === type.title ? styles.selectedType : undefined}`}
                                 onClick={() => clickFuelTypeBtn(type.title)}
                             >
-                                {type.title}
+                                {type.title.toUpperCase()}
                             </button>
                         ))}
                     </div>
@@ -130,7 +130,7 @@ export default function ClientFilter(props: ClientFilterProps) {
             {/* ALL MODELS */}
             {filteredModels && filteredModels.length > 0 && (
                 <div className={styles.modelsContainer}>
-                    <h2 className={styles.modelsHeading}>Models</h2>
+                    <h2 className={styles.modelsHeading}>MODELS</h2>
 
                     {/* MODEL BUTTONS */}
                     <div className={styles.modelBtnsContainer}>

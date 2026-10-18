@@ -5,6 +5,7 @@ import BlockWrapper from "@/components/wrapperComponents/BlockWrapper/BlockWrapp
 import ContentWrapper from "@/components/wrapperComponents/ContentWrapper/ContentWrapper";
 import Guide from "@/components/mainComponents/guide/Guide";
 import { notFound } from "next/navigation";
+import Header from "@/components/mainComponents/header/Header";
 
 export async function generateStaticParams() {
     const ids = await getAllGuideIds();
@@ -25,10 +26,13 @@ export default async function GuidePage(props: DynamicPageProps) {
     //console.log(guide);
 
     return (
-        <BlockWrapper>
-            <ContentWrapper>
-                <Guide guide={guide} />
-            </ContentWrapper>
-        </BlockWrapper>
+        <>
+            <Header />
+            <BlockWrapper>
+                <ContentWrapper>
+                    <Guide guide={guide} />
+                </ContentWrapper>
+            </BlockWrapper>
+        </>
     );
 }

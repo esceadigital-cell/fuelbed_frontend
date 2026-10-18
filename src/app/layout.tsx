@@ -28,7 +28,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <html lang="en" className={myFont.variable}>
             <body>
                 <ServiceWorkerRegister />
-                <Header />
                 <main>{children}</main>
             </body>
         </html>

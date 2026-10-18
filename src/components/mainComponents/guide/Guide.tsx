@@ -214,8 +214,8 @@ export default function Guide(props: GuideProps) {
                         <IconComponent
                             src="/icons/arrow_circle_right_dark.png"
                             alt="Previous log"
-                            width={40}
-                            height={40}
+                            width={50}
+                            height={50}
                             unoptimized
                         />
                     </button>
@@ -231,8 +231,8 @@ export default function Guide(props: GuideProps) {
                         <IconComponent
                             src="/icons/arrow_circle_right_dark.png"
                             alt="Previous log"
-                            width={40}
-                            height={40}
+                            width={50}
+                            height={50}
                             unoptimized
                         />
                     </button>
@@ -399,7 +399,7 @@ export default function Guide(props: GuideProps) {
                 {/* BURGER MENU */}
                 {/* ICON */}
                 <button
-                    className={styles.burgerIconWrapper}
+                    className={`${styles.burgerIconWrapper} ${burgerMenuIsShown ? styles.highZIndex : undefined}`}
                     onClick={() => setBurgerMenuIsShown((prev) => !prev)}
                 >
                     <IconComponent

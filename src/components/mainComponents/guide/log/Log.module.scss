@@ -69,12 +69,18 @@
             width: 1.5rem;
             aspect-ratio: 1/1;
             border-radius: 50%;
-            background-color: $color-grey;
+            background-color: rgba($color-dark, 0.4);
             justify-self: center;
 
             &.activeDot {
                 background-color: $color-orange;
             }
+        }
+
+        // dots and lines after the active dot go back to grey
+        .dot.activeDot ~ .dot,
+        .dot.activeDot ~ .dot::before {
+            background-color: $color-grey;
         }
 
         // every dot except the first draws a line back to the previous dot
@@ -89,8 +95,8 @@
             height: 0.3rem;
             transform: translateY(-50%);
             border-radius: $border-radius;
-            background-color: $color-grey;
             z-index: -1;
+            background-color: rgba($color-dark, 0.4);
         }
     }
 

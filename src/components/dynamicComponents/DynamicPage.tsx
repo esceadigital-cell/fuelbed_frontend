@@ -1,6 +1,7 @@
 import { getPageBySlug } from "@/lib/api";
 import DynamicComponent from "./DynamicComponent";
 import { notFound } from "next/navigation";
+import Header from "../mainComponents/header/Header";
 
 interface DynamicPageProps {
     slug: string;
@@ -17,6 +18,7 @@ export default async function DynamicPage(props: DynamicPageProps) {
 
     return (
         <>
+            <Header hasGetAppBtn />
             {pageBlocks && pageBlocks.length > 0 ? (
                 pageBlocks.map((block: any) => (
                     <DynamicComponent
