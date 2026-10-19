@@ -33,6 +33,7 @@ export default function ModelPopup(props: ModelPopupProps) {
                         alt="Close model popup"
                         width={35}
                         height={35}
+                        unoptimized
                     />
                 </div>
 

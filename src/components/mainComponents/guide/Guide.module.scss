@@ -80,10 +80,10 @@
             max-height: calc(100dvh - 15rem);
             will-change: clip-path;
 
-            &.isVirgin {
+            /*&.isVirgin {
                 height: calc(100dvh - 15rem);
                 justify-content: center;
-            }
+            }*/
 
             @media screen and (min-width: $breakpoint-mobile) {
                 max-width: calc(100vw - 7rem);

@@ -47,6 +47,7 @@ export default function Header(props: HeaderProps) {
                                                 alt="How to get as mobile app"
                                                 width={35}
                                                 height={35}
+                                                unoptimized
                                             />
                                         </div>
                                     </span>
@@ -68,6 +69,7 @@ export default function Header(props: HeaderProps) {
                                                     alt="share-icon"
                                                     width={25}
                                                     height={25}
+                                                    unoptimized
                                                 />
                                             </span>{" "}
                                             icon in your browser

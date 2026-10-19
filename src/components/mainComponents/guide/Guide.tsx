@@ -27,7 +27,7 @@ export default function Guide(props: GuideProps) {
 
     const [currentLogIndex, setCurrentLogIndex] = useState<number>(0);
     const [guideTextIsShown, setGuideTextIsShown] = useState<boolean>(true);
-    const [isInfoPopupVirgin, setIsInfoPopupVirgin] = useState<boolean>(true);
+    //const [isInfoPopupVirgin, setIsInfoPopupVirgin] = useState<boolean>(true);
     const [burgerMenuIsShown, setBurgerMenuIsShown] = useState<boolean>(false);
     const [logPreviewIndex, setLogPreviewIndex] = useState<number | null>(null);
     const [downloadPopupIsOpen, setDownloadPopupIsOpen] = useState<boolean>(false);
@@ -83,14 +83,14 @@ export default function Guide(props: GuideProps) {
         setGuideTextIsShown(false);
     }
 
-    function handleGuideTextTransitionEnd(e: React.TransitionEvent<HTMLDivElement>) {
+    /*function handleGuideTextTransitionEnd(e: React.TransitionEvent<HTMLDivElement>) {
         // ignore transitions bubbling up from children, and other properties
         if (e.target !== e.currentTarget || e.propertyName !== "clip-path") return;
 
         if (!guideTextIsShown && isInfoPopupVirgin) {
             setIsInfoPopupVirgin(false);
         }
-    }
+    }*/
 
     function toggleInfoPopup(e: React.MouseEvent) {
         e.stopPropagation();
@@ -280,9 +280,9 @@ export default function Guide(props: GuideProps) {
                                 ></div>
                             )}
                             <div
-                                className={`${styles.guideText} ${guideTextIsShown ? styles.isShown : undefined} ${isInfoPopupVirgin ? styles.isVirgin : undefined}`}
+                                className={`${styles.guideText} ${guideTextIsShown ? styles.isShown : undefined}`}
                                 onClick={(e) => e.stopPropagation()}
-                                onTransitionEnd={handleGuideTextTransitionEnd}
+                                //onTransitionEnd={handleGuideTextTransitionEnd}
                             >
                                 <Suspense fallback={null}>
                                     <GuideTitles />

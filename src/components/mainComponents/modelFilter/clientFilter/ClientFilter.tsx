@@ -62,6 +62,7 @@ export default function ClientFilter(props: ClientFilterProps) {
                                 alt="See downloaded guides"
                                 width={30}
                                 height={30}
+                                unoptimized
                             />
                         </div>
                     </div>
