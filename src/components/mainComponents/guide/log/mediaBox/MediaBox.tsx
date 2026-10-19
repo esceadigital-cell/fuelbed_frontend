@@ -33,13 +33,36 @@ export default function MediaBox(props: MediaBoxProps) {
     }, []);
 
     // Slide track height adjustment to current slide
-    useEffect(() => {
+    /*useEffect(() => {
         const track = trackRef.current;
         const slide = track?.children[currentIndex] as HTMLElement | undefined;
         if (!track || !slide) return;
 
         function updateHeight() {
             if (track && slide) track.style.height = `${slide.offsetHeight}px`;
+        }
+
+        updateHeight();
+        const observer = new ResizeObserver(updateHeight);
+        observer.observe(slide);
+
+        return () => observer.disconnect();
+    }, [currentIndex, props.media]);*/
+
+    // Slide track height adjustment to current slide
+    useEffect(() => {
+        const track = trackRef.current;
+        const slide = track?.children[currentIndex] as HTMLElement | undefined;
+        if (!track || !slide) return;
+
+        function updateHeight() {
+            if (!track || !slide) return;
+
+            // a video without metadata has a placeholder size; keep the current height until it loads
+            const video = slide.querySelector("video");
+            if (video && video.readyState < 1) return;
+
+            track.style.height = `${slide.offsetHeight}px`;
         }
 
         updateHeight();

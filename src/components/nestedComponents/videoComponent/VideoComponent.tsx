@@ -11,7 +11,7 @@ export default function VideoComponent(props: VideoComponentProps) {
     //const STRAPI_URL = process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://localhost:1337";
 
     return (
-        <div className={styles.wrapper}>
+        <div className={`${styles.wrapper}`}>
             <video
                 className={styles.video}
                 controls={!props.noControls}
@@ -19,6 +19,7 @@ export default function VideoComponent(props: VideoComponentProps) {
                 muted
                 loop
                 playsInline
+                preload="metadata"
             >
                 <source src={getMediaUrl(props.video.url)} type={props.video.mime} />
             </video>
