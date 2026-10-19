@@ -33,6 +33,7 @@
         gap: $gap-small;
         align-items: center;
         @include btnStyles;
+        border: 1px solid $color-grey;
         padding: 0.2rem 0.5rem;
 
         .downloadedGuidesHeading {
@@ -50,7 +51,7 @@
 
     .downloadedGuidesList {
         background-color: $color-grey;
-        border: 1px solid rgba($color-dark, 0.5);
+        border: 1px solid rgba($color-dark, 0.2);
         border-radius: $border-radius;
         padding: 2.5rem 1rem;
         //padding-bottom: 2rem;
@@ -111,8 +112,9 @@
     display: flex;
     flex-direction: column;
     gap: $gap-small;
-    border-top: 1px solid rgba($color-dark, 0.3);
-    padding-top: $gap-medium;
+    //border-top: 1px solid rgba($color-dark, 0.3);
+    padding: $gap-medium $gap-small;
+    background-color: $color-grey;
 
     .modelsHeading {
         @include p-styles;
@@ -128,7 +130,8 @@
         @include btnStyles;
         width: 100%;
         //padding: 0.5rem 1rem;
-        border: 1px solid $color-dark;
+        //border: 1px solid $color-dark;
+        border: 1px solid #1414141a;
         //background-color: $color-dark;
         //color: $color-light;
     }

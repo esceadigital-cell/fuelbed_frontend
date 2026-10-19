@@ -53,12 +53,12 @@ export default function ClientFilter(props: ClientFilterProps) {
                         className={styles.downloadedGuidesDropDownTopBar}
                         onClick={() => setDownloadedGuidesAreShown((prev) => !prev)}
                     >
-                        <h2 className={styles.downloadedGuidesHeading}>DOWNLOADED GUIDES</h2>
+                        <span className={styles.downloadedGuidesHeading}>DOWNLOADED GUIDES</span>
                         <div
                             className={`${styles.arrowIconWrapper} ${downloadedGuidesAreShown ? styles.isOpen : undefined}`}
                         >
                             <IconComponent
-                                src="/icons/arrow_drop_down.png"
+                                src="/icons/chevron_down.png"
                                 alt="See downloaded guides"
                                 width={30}
                                 height={30}
@@ -96,7 +96,7 @@ export default function ClientFilter(props: ClientFilterProps) {
             )}
 
             <div>
-                <h1 className={styles.heading}>CHOOSE MODEL</h1>
+                <h1 className={styles.heading}>Choose Model</h1>
 
                 {/* SEARCH */}
                 <input
@@ -113,7 +113,7 @@ export default function ClientFilter(props: ClientFilterProps) {
             {/* FUEL TYPES FILTER BUTTONS */}
             {props.fuelTypes && props.fuelTypes.length > 0 && (
                 <div className={styles.fuelTypeFilterButtonsWrapper}>
-                    <h2 className={styles.fueltypeFilterHeading}>FILTER MODELS BY FUEL TYPE</h2>
+                    <h2 className={styles.fueltypeFilterHeading}>Filter Models By Fuel Type</h2>
                     <div className={styles.fuelTypeBtns}>
                         {props.fuelTypes.map((type: fuelType) => (
                             <button

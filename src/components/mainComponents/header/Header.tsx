@@ -18,12 +18,12 @@ export default function Header(props: HeaderProps) {
         <BlockWrapper>
             <ContentWrapper>
                 <header className={styles.header}>
-                    <Link href={"/"}>
+                    <Link href={"/"} className={styles.logoLink}>
                         <IconComponent
                             src="/icons/escea_logo_orange.svg"
                             alt="Escea"
-                            width={60}
-                            height={25}
+                            width={108}
+                            height={20}
                             unoptimized
                         />
                     </Link>
@@ -38,7 +38,7 @@ export default function Header(props: HeaderProps) {
                                     <span
                                         className={`${styles.btnText} ${popupIsShown ? styles.faded : undefined}`}
                                     >
-                                        GET AS APP
+                                        GET APP
                                     </span>
                                     <span className={styles.iconWrapper}>
                                         <div className={styles.bgColor}>

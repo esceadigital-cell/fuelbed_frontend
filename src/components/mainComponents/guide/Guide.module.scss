@@ -65,7 +65,7 @@
             transform: translate(21px, calc(-100% + 13px));
             background-color: $color-light;
             color: $color-dark;
-            border: 1px solid $color-orange;
+            border: 1px solid $color-light-dark;
             border-radius: $border-radius;
             display: flex;
             flex-direction: column;
@@ -159,7 +159,7 @@
         transform: translate(21px, calc(-100% + 13px));
         background-color: $color-light;
         color: $color-dark;
-        border: 1px solid $color-orange;
+        border: 1px solid $color-light-dark;
         border-radius: $border-radius;
         display: flex;
         flex-direction: column;
