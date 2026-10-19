@@ -420,11 +420,14 @@
         //grid-template-columns: 1fr 1fr;
         //justify-content: space-between;
         align-items: center;
-        column-gap: $gap-medium;
-        justify-content: center;
+        //column-gap: $gap-medium;
+        justify-content: space-between;
+        //justify-content: center;
         //background-color: $color-light;
         border: 1px solid $color-dark;
-        max-width: fit-content;
+        //max-width: fit-content;
+        width: calc(100vw - 10rem);
+        max-width: 30rem;
         margin: 0 auto;
         border-radius: $border-radius;
         overflow: hidden;
