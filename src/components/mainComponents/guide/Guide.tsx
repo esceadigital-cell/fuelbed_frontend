@@ -27,12 +27,13 @@ export default function Guide(props: GuideProps) {
 
     const [currentLogIndex, setCurrentLogIndex] = useState<number>(0);
     const [guideTextIsShown, setGuideTextIsShown] = useState<boolean>(true);
-    //const [isInfoPopupVirgin, setIsInfoPopupVirgin] = useState<boolean>(true);
     const [burgerMenuIsShown, setBurgerMenuIsShown] = useState<boolean>(false);
     const [logPreviewIndex, setLogPreviewIndex] = useState<number | null>(null);
     const [downloadPopupIsOpen, setDownloadPopupIsOpen] = useState<boolean>(false);
     const [checklistIsShown, setChecklistIsShown] = useState<boolean>(false);
     const [isDownloading, setIsDownloading] = useState<boolean>(false);
+
+    const menuRef = useRef<HTMLDivElement>(null);
 
     //new sw
     const [isDownloaded, setIsDownloaded] = useState(false);
@@ -83,15 +84,6 @@ export default function Guide(props: GuideProps) {
         setGuideTextIsShown(false);
     }
 
-    /*function handleGuideTextTransitionEnd(e: React.TransitionEvent<HTMLDivElement>) {
-        // ignore transitions bubbling up from children, and other properties
-        if (e.target !== e.currentTarget || e.propertyName !== "clip-path") return;
-
-        if (!guideTextIsShown && isInfoPopupVirgin) {
-            setIsInfoPopupVirgin(false);
-        }
-    }*/
-
     function toggleInfoPopup(e: React.MouseEvent) {
         e.stopPropagation();
         if (guideTextIsShown) {
@@ -111,19 +103,24 @@ export default function Guide(props: GuideProps) {
     const [previewOffsetY, setPreviewOffsetY] = useState(0);
 
     useLayoutEffect(() => {
-        if (logPreviewIndex === null || !previewRef.current) {
+        if (logPreviewIndex === null || !previewRef.current || !menuRef.current) {
             setPreviewOffsetY(0);
             return;
         }
 
         const rect = previewRef.current.getBoundingClientRect();
-        const margin = 16; // breathing room from the screen edge
+        const menuRect = menuRef.current.getBoundingClientRect();
+        const margin = 16;
+
+        // the menu clips its children, so stay inside the menu, not the window
+        const minTop = Math.max(menuRect.top, 0) + margin;
+        const maxBottom = Math.min(menuRect.bottom, window.innerHeight) - margin;
 
         let offset = 0;
-        if (rect.top < margin) {
-            offset = margin - rect.top;
-        } else if (rect.bottom > window.innerHeight - margin) {
-            offset = window.innerHeight - margin - rect.bottom;
+        if (rect.top < minTop) {
+            offset = minTop - rect.top;
+        } else if (rect.bottom > maxBottom) {
+            offset = maxBottom - rect.bottom;
         }
 
         setPreviewOffsetY(offset);
@@ -413,6 +410,7 @@ export default function Guide(props: GuideProps) {
 
                 {/* MENU */}
                 <div
+                    ref={menuRef}
                     className={`${styles.burgerMenu} ${burgerMenuIsShown ? styles.isOpen : undefined}`}
                 >
                     <div className={styles.stickyContent}>
