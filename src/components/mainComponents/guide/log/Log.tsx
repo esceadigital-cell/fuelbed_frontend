@@ -73,37 +73,37 @@ export default function Log(props: LogProps) {
                         </button>
                     )}
                 </div>
+
+                {/* INDICATOR LINES AND DOTS */}
+                {stepCount > 1 && (
+                    <div className={styles.lineIndicatorWrapper}>
+                        {hasRotationMedia && (
+                            <div
+                                className={`${styles.dot} ${currentStep === "rotation" ? styles.activeDot : ""}`}
+                                onClick={() => setCurrentStep("rotation")}
+                            ></div>
+                        )}
+
+                        {hasOverviewMedia && (
+                            <>
+                                <div
+                                    className={`${styles.dot} ${currentStep === "overview" ? styles.activeDot : ""}`}
+                                    onClick={() => setCurrentStep("overview")}
+                                ></div>
+                            </>
+                        )}
+
+                        {hasCloseupMedia && (
+                            <>
+                                <div
+                                    className={`${styles.dot} ${currentStep === "closeup" ? styles.activeDot : ""}`}
+                                    onClick={() => setCurrentStep("closeup")}
+                                ></div>
+                            </>
+                        )}
+                    </div>
+                )}
             </div>
-
-            {/* INDICATOR LINES AND DOTS */}
-            {stepCount > 1 && (
-                <div className={styles.lineIndicatorWrapper}>
-                    {hasRotationMedia && (
-                        <div
-                            className={`${styles.dot} ${currentStep === "rotation" ? styles.activeDot : ""}`}
-                            onClick={() => setCurrentStep("rotation")}
-                        ></div>
-                    )}
-
-                    {hasOverviewMedia && (
-                        <>
-                            <div
-                                className={`${styles.dot} ${currentStep === "overview" ? styles.activeDot : ""}`}
-                                onClick={() => setCurrentStep("overview")}
-                            ></div>
-                        </>
-                    )}
-
-                    {hasCloseupMedia && (
-                        <>
-                            <div
-                                className={`${styles.dot} ${currentStep === "closeup" ? styles.activeDot : ""}`}
-                                onClick={() => setCurrentStep("closeup")}
-                            ></div>
-                        </>
-                    )}
-                </div>
-            )}
 
             {props.log.logText && (
                 <div className={styles.logTextWrapper}>

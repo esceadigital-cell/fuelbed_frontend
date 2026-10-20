@@ -33,7 +33,7 @@
         gap: $gap-small;
         align-items: center;
         @include btnStyles;
-        border: 1px solid $color-grey;
+        border: 1px solid $color-light-dark;
         padding: 0.2rem 0.5rem;
 
         .downloadedGuidesHeading {
@@ -51,7 +51,7 @@
 
     .downloadedGuidesList {
         background-color: $color-grey;
-        border: 1px solid rgba($color-dark, 0.2);
+        border: 1px solid $color-light-dark;
         border-radius: $border-radius;
         padding: 2.5rem 1rem;
         //padding-bottom: 2rem;

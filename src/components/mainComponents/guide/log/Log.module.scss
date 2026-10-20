@@ -6,7 +6,7 @@
     border-radius: $border-radius;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: $gap-medium;
 
     .mediaWrapper {
         border: 1px solid $color-dark;
@@ -63,13 +63,14 @@
         align-items: center;
         container-type: inline-size; // lets children measure the grid's width with cqw
         isolation: isolate; // keeps the lines' negative z-index inside this element
+        margin-top: $gap-small;
 
         .dot {
             position: relative;
-            width: 1.5rem;
+            width: 1rem;
             aspect-ratio: 1/1;
             border-radius: 50%;
-            background-color: rgba($color-dark, 0.4);
+            background-color: rgba($color-dark, 0.7);
             justify-self: center;
 
             &.activeDot {
@@ -92,11 +93,11 @@
             right: calc(50% + 0.75rem + 0.4rem);
             // one column, minus a dot radius and a gap at each end
             width: calc(100cqw / 3 - 1.5rem - 0.8rem);
-            height: 0.3rem;
+            height: 0.2rem;
             transform: translateY(-50%);
             border-radius: $border-radius;
             z-index: -1;
-            background-color: rgba($color-dark, 0.4);
+            background-color: rgba($color-dark, 0.7);
         }
     }
 
