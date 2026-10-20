@@ -1,5 +1,5 @@
 // bump this when you change offline.html, the font or any precached icon
-const APP_SHELL = "app-shell-v13";
+const APP_SHELL = "app-shell-v14";
 
 self.addEventListener("install", (event) => {
     self.skipWaiting();
