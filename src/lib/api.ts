@@ -126,3 +126,17 @@ export async function getAllGuideIds(): Promise<string[]> {
     const json = await res.json();
     return json.data.map((g: { documentId: string }) => g.documentId);
 }
+
+// GET CONTACT DETAILS
+
+export async function getContactDetails() {
+    const res = await fetch(`${STRAPI_URL}/api/contact-detail`, {
+        headers: { Authorization: `Bearer ${process.env.STRAPI_API_KEY}` },
+    });
+
+    if (!res.ok) throw new Error("Failed to fetch contact details");
+
+    const json = await res.json();
+
+    return json.data;
+}

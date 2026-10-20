@@ -68,3 +68,8 @@ export interface buttonType {
 export interface DynamicPageProps {
     params: Promise<{ slug: string }>;
 }
+
+export interface ContactDetails {
+    phoneNumber?: string;
+    email?: string;
+}

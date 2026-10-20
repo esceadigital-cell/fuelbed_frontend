@@ -92,11 +92,10 @@
         padding: 0.2rem 0.5rem;
         @include p-styles;
         width: 100%;
-        border: none;
         border-radius: $border-radius;
         background-color: $color-grey;
         color: $color-dark;
-        border: 1px solid $color-dark;
+        border: 1px solid $color-light-dark;
     }
 
     .singleVersion {

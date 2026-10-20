@@ -11,6 +11,73 @@
     border-bottom: 1px solid $color-grey;
 }
 
+.contactDetailsWrapper {
+    position: relative;
+    max-width: fit-content;
+    z-index: 0;
+    transition: z-index 0s 0.3s; // wait 0.3s before dropping back
+
+    &.highZIndex {
+        z-index: 3;
+        transition-delay: 0s; // raise immediately when opening
+    }
+
+    .contactIconWrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $color-light;
+        border-radius: 50%;
+        border: none;
+        width: 2.5rem;
+        height: 2.5rem;
+        aspect-ratio: 1/1;
+        //z-index: 10;
+    }
+
+    .contactPopup {
+        position: absolute;
+        padding: 1rem 2rem;
+        background-color: $color-light;
+        border: 1px solid $color-light-dark;
+        top: calc(100% - 1rem);
+        left: calc(100% - 1rem);
+        width: max-content;
+        max-width: calc(100vw - 4rem);
+        border-radius: $border-radius;
+        z-index: -1;
+        display: flex;
+        flex-direction: column;
+        gap: $gap-small;
+        clip-path: inset(0 100% 100% 0); // hidden: collapsed into the top-right corner
+        pointer-events: none; // can't be clicked while hidden
+        transition: clip-path 0.3s;
+        will-change: clip-path;
+
+        @media screen and (min-width: $breakpoint-mobile) {
+            max-width: calc(100vw - 13rem);
+        }
+
+        &.isShown {
+            clip-path: inset(0 0 0 0); // fully revealed
+            pointer-events: auto;
+        }
+
+        .contactDetailWrapper {
+            display: flex;
+            flex-direction: column;
+
+            a {
+                text-decoration: underline;
+                background-color: $color-grey;
+                padding: 0.5rem;
+                max-width: fit-content;
+                line-break: anywhere;
+            }
+        }
+    }
+}
+
 .logoLink {
     justify-self: center;
     grid-column: 2;
@@ -21,6 +88,10 @@
     z-index: 2;
     grid-column: 3;
     justify-self: end;
+
+    &.lowZIndex {
+        z-index: 0;
+    }
 
     @media (display-mode: standalone) {
         display: none;

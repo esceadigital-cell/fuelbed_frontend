@@ -6,18 +6,78 @@ import Link from "next/link";
 import BlockWrapper from "@/components/wrapperComponents/BlockWrapper/BlockWrapper";
 import ContentWrapper from "@/components/wrapperComponents/ContentWrapper/ContentWrapper";
 import { useState } from "react";
+import { ContactDetails } from "@/types/types";
 
 interface HeaderProps {
     hasGetAppBtn?: boolean;
+    contactDetails?: ContactDetails;
 }
 
 export default function Header(props: HeaderProps) {
     const [popupIsShown, setPopupIsShown] = useState<boolean>(false);
+    const [contactPopupIsShown, setContactPopupIsShown] = useState<boolean>(false);
 
     return (
         <BlockWrapper>
             <ContentWrapper>
                 <header className={styles.header}>
+                    {/* CONTACT */}
+                    {props.contactDetails &&
+                        (props.contactDetails.phoneNumber || props.contactDetails.email) && (
+                            <>
+                                <div
+                                    className={`${styles.contactDetailsWrapper} ${contactPopupIsShown ? styles.highZIndex : undefined}`}
+                                >
+                                    <button
+                                        className={styles.contactIconWrapper}
+                                        onClick={() => setContactPopupIsShown((prev) => !prev)}
+                                    >
+                                        <IconComponent
+                                            src="/icons/contact_support.png"
+                                            alt="contact support"
+                                            width={25}
+                                            height={25}
+                                            unoptimized
+                                        />
+                                    </button>
+
+                                    {/* CONTACT POPUP */}
+                                    <div
+                                        className={`${styles.contactPopup} ${contactPopupIsShown ? styles.isShown : undefined}`}
+                                    >
+                                        <h3>Technical Support</h3>
+                                        {props.contactDetails.phoneNumber && (
+                                            <div className={styles.contactDetailWrapper}>
+                                                <h4>Phone:</h4>
+                                                <a
+                                                    href={`tel:${props.contactDetails.phoneNumber.replace(/[^\d+]/g, "")}`}
+                                                >
+                                                    {props.contactDetails.phoneNumber}
+                                                </a>
+                                            </div>
+                                        )}
+                                        {props.contactDetails.email && (
+                                            <div className={styles.contactDetailWrapper}>
+                                                <h4>E-mail:</h4>
+                                                <a href={`mailto:${props.contactDetails.email}`}>
+                                                    {props.contactDetails.email}
+                                                </a>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* BG LAYER */}
+                                {contactPopupIsShown && (
+                                    <div
+                                        className={styles.bgLayer}
+                                        onClick={() => setContactPopupIsShown(false)}
+                                    ></div>
+                                )}
+                            </>
+                        )}
+
+                    {/* LOGO */}
                     <Link href={"/"} className={styles.logoLink}>
                         <IconComponent
                             src="/icons/escea_logo_orange.svg"
@@ -28,9 +88,12 @@ export default function Header(props: HeaderProps) {
                         />
                     </Link>
 
+                    {/* GET AS APP GUIDE */}
                     {props.hasGetAppBtn && (
                         <>
-                            <div className={styles.appBtnWrapper}>
+                            <div
+                                className={`${styles.appBtnWrapper} ${contactPopupIsShown ? styles.lowZIndex : undefined}`}
+                            >
                                 <button
                                     className={styles.appBtn}
                                     onClick={() => setPopupIsShown((prev) => !prev)}

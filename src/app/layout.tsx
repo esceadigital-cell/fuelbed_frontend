@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.scss";
-import Header from "@/components/mainComponents/header/Header";
 import ServiceWorkerRegister from "@/components/nestedComponents/serviceWorkerRegister/ServiceWorkerRegister";
 import localFont from "next/font/local";
 
